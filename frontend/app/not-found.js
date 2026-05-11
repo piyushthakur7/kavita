@@ -10,7 +10,7 @@ export default function NotFound() {
         crumbs={[{ label: '404' }]}
       />
       <section className="py-24 text-center">
-        <p className="text-[#4b4753] mb-6">The page you are looking for doesn't exist.</p>
+        <p className="text-[#4b4753] mb-6">The page you are looking for doesn&apos;t exist.</p>
         <Link href="/" className="btn-dark">Back to Home</Link>
       </section>
     </>

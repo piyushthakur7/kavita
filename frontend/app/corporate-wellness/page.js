@@ -30,7 +30,7 @@ export default function CorporatePage() {
           <div>
             <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">Why It Matters</p>
             <h2 className="font-serif-display text-[42px] lg:text-[56px] leading-[1.05] text-[#1c1a1f]">
-              Invest in your team's <span className="italic font-light">mental wealth</span>
+              Invest in your team&apos;s <span className="italic font-light">mental wealth</span>
             </h2>
             <p className="mt-6 text-[15.5px] text-[#4b4753] leading-relaxed">
               High-performing organizations are built on emotionally resilient people. Our corporate
@@ -81,7 +81,7 @@ export default function CorporatePage() {
             Ready to elevate your <span className="italic font-light text-white/85">workplace wellbeing?</span>
           </h2>
           <p className="mt-5 text-white/65 max-w-2xl mx-auto">
-            Let's design a custom wellness program for your organization. From discovery to delivery,
+            Let&apos;s design a custom wellness program for your organization. From discovery to delivery,
             we partner with you at every step.
           </p>
           <div className="mt-9">
