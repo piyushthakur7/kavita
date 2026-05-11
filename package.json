@@ -1,0 +1,8 @@
+{
+  "name": "kavita-monorepo",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "brand-easy"
+  ]
+}
