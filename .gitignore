@@ -6,8 +6,7 @@
 
 # Dependencies
 node_modules/
-/node_modules
-/.pnp
+.pnp
 .pnp.js
 .yarn/install-state.gz
 .yarn/*
@@ -20,7 +19,7 @@ node_modules/
 /coverage
 
 # Next.js
-/.next/
+.next/
 /out/
 next-env.d.ts
 *.tsbuildinfo
@@ -87,4 +86,4 @@ android-sdk/-e
 credentials.json
 *.pem
 *.key
-.credentials
+90: .credentials
