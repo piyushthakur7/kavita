@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { heroImages } from '../mock';
 
 const Hero = () => {
   return (
     <section id="home" className="relative hero-gradient overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
-      {/* decorative dots pattern top-left */}
       <div className="absolute -top-4 left-8 w-32 h-32 dots-bg opacity-60 rounded-full" />
       <div className="absolute bottom-10 left-1/3 w-40 h-40 dots-bg opacity-50 rounded-full" />
 
@@ -20,13 +20,12 @@ const Hero = () => {
             online. Begin your journey to clarity, peace and lasting balance.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href="#contact" className="btn-dark">Get Free Consultation</a>
-            <a href="#services" className="btn-outline-dark">Explore Services</a>
+            <Link to="/contact" className="btn-dark">Get Free Consultation</Link>
+            <Link to="/services" className="btn-outline-dark">Explore Services</Link>
           </div>
         </div>
 
         <div className="relative h-[440px] sm:h-[520px] lg:h-[620px]">
-          {/* layered shadow silhouette */}
           <div className="absolute right-10 top-6 w-[80%] h-full rounded-[400px] bg-[#cfcce6] blur-2xl opacity-70" />
           <img
             src={heroImages.primary}

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Facebook, Youtube, Instagram, ArrowUp } from 'lucide-react';
 import Logo from './Logo';
 import { ContactInfo } from './Contact';
 import { useToast } from '../hooks/use-toast';
+import { navLinks } from '../mock';
 
 const Footer = () => {
   const { toast } = useToast();
@@ -27,7 +29,6 @@ const Footer = () => {
 
   return (
     <footer className="bg-black text-white">
-      {/* Subscribe band */}
       <div className="border-b border-white/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-14 grid lg:grid-cols-2 gap-8 items-center">
           <h3 className="font-serif-display text-[36px] lg:text-[44px] leading-tight">
@@ -59,14 +60,23 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 grid lg:grid-cols-3 gap-10">
-        <div>
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 grid lg:grid-cols-4 gap-10">
+        <div className="lg:col-span-1">
           <Logo light />
           <p className="mt-5 text-[14px] text-white/60 leading-relaxed">
-            At Kavita Kabira Wellness Clinic, we are dedicated to providing compassionate,
-            personalized mental health care to individuals, families, and institutions. Our
-            mission is to support your journey to emotional well-being and personal growth.
+            At Kavita Kabira Wellness Clinic, we provide compassionate, personalized mental health
+            care to individuals, families and organizations.
           </p>
+        </div>
+        <div>
+          <h4 className="font-serif-display text-xl mb-5">Quick Links</h4>
+          <ul className="space-y-2.5">
+            {navLinks.map((l) => (
+              <li key={l.label}>
+                <Link to={l.to} className="text-[14px] text-white/70 hover:text-white transition">{l.label}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <div>
           <h4 className="font-serif-display text-xl mb-5">Contact</h4>
