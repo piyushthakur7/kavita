@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { heroImages } from '../mock';
+import Link from 'next/link';
+import { heroImages } from '@/lib/mock';
 
 const Hero = () => {
   return (
@@ -20,8 +20,8 @@ const Hero = () => {
             online. Begin your journey to clarity, peace and lasting balance.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Link to="/contact" className="btn-dark">Get Free Consultation</Link>
-            <Link to="/services" className="btn-outline-dark">Explore Services</Link>
+            <Link href="/contact" className="btn-dark">Get Free Consultation</Link>
+            <Link href="/services" className="btn-outline-dark">Explore Services</Link>
           </div>
         </div>
 

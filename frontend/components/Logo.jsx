@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Logo = ({ light = false }) => {
   return (
-    <Link to="/" className="flex items-center gap-3 group">
+    <Link href="/" className="flex items-center gap-3 group">
       <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-fuchsia-500 via-purple-500 to-orange-400 flex items-center justify-center">
         <span className="font-serif-display text-white text-lg font-bold">K</span>
       </div>

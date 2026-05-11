@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Award, Users, Heart, CheckCircle2 } from 'lucide-react';
-import { stats } from '../mock';
+import { stats } from '@/lib/mock';
 
 const icons = [Award, Users, Heart, CheckCircle2];
 

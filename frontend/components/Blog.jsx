@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, Eye, ThumbsUp, MessageSquare } from 'lucide-react';
-import { blogPosts } from '../mock';
+import { blogPosts } from '@/lib/mock';
 
 const Blog = ({ limit }) => {
   const items = limit ? blogPosts.slice(0, limit) : blogPosts;
@@ -21,13 +21,13 @@ const Blog = ({ limit }) => {
               someone guide you along the way.
             </p>
           </div>
-          <Link to="/blog" className="btn-outline-dark self-start lg:self-end">View all posts</Link>
+          <Link href="/blog" className="btn-outline-dark self-start lg:self-end">View all posts</Link>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
           {items.map((p) => (
             <article key={p.id} className="svc-card group bg-white border border-gray-100 rounded-3xl overflow-hidden">
-              <Link to={`/blog/${p.id}`} className="block h-60 overflow-hidden">
+              <Link href={`/blog/${p.id}`} className="block h-60 overflow-hidden">
                 <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </Link>
               <div className="p-7">
@@ -35,7 +35,7 @@ const Blog = ({ limit }) => {
                   {p.category}
                 </span>
                 <h3 className="font-serif-display text-[22px] leading-snug text-[#1c1a1f] mb-3">
-                  <Link to={`/blog/${p.id}`} className="hover:text-fuchsia-700 transition-colors">{p.title}</Link>
+                  <Link href={`/blog/${p.id}`} className="hover:text-fuchsia-700 transition-colors">{p.title}</Link>
                 </h3>
                 <p className="text-[14px] text-[#4b4753] leading-relaxed mb-5">{p.excerpt}</p>
                 <div className="flex items-center gap-4 text-[11.5px] text-[#9b97a4] mb-5 flex-wrap">
@@ -44,7 +44,7 @@ const Blog = ({ limit }) => {
                   <span className="flex items-center gap-1"><ThumbsUp size={13} /> {p.likes}</span>
                   <span className="flex items-center gap-1"><MessageSquare size={13} /> {p.comments}</span>
                 </div>
-                <Link to={`/blog/${p.id}`} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
+                <Link href={`/blog/${p.id}`} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
                   Read more
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                 </Link>

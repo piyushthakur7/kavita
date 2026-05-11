@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { featureCards } from '../mock';
+import Link from 'next/link';
+import { featureCards } from '@/lib/mock';
 
 const FeatureCards = () => {
   return (
@@ -14,7 +14,7 @@ const FeatureCards = () => {
             <div className="p-7">
               <h3 className="font-serif-display text-[26px] leading-tight text-[#1c1a1f] mb-3">{c.title}</h3>
               <p className="text-[14.5px] leading-relaxed text-[#4b4753] mb-4">{c.desc}</p>
-              <Link to={c.id === 'corporate' ? '/corporate-wellness' : '/services'} className="text-[12.5px] uppercase tracking-[0.22em] font-semibold text-fuchsia-700 hover:text-fuchsia-900">
+              <Link href={c.id === 'corporate' ? '/corporate-wellness' : '/services'} className="text-[12.5px] uppercase tracking-[0.22em] font-semibold text-fuchsia-700 hover:text-fuchsia-900">
                 Learn more →
               </Link>
             </div>

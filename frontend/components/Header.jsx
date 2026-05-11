@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
-import { navLinks } from '../mock';
+import { navLinks } from '@/lib/mock';
 
 const Header = ({ onBookClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
-  const isHome = location.pathname === '/';
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -16,7 +17,7 @@ const Header = ({ onBookClick }) => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   const headerBg = scrolled || !isHome
     ? 'bg-white/90 backdrop-blur-md shadow-[0_2px_20px_-10px_rgba(0,0,0,0.15)]'
@@ -27,20 +28,20 @@ const Header = ({ onBookClick }) => {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
         <Logo />
         <nav className="hidden lg:flex items-center gap-9">
-          {navLinks.map((l) => (
-            <NavLink
-              key={l.label}
-              to={l.to}
-              end={l.to === '/'}
-              className={({ isActive }) =>
-                `text-[15px] font-medium anchor-line ${
+          {navLinks.map((l) => {
+            const isActive = pathname === l.to;
+            return (
+              <Link
+                key={l.label}
+                href={l.to}
+                className={`text-[15px] font-medium anchor-line ${
                   isActive ? 'text-fuchsia-700' : 'text-[#1c1a1f]'
-                }`
-              }
-            >
-              {l.label}
-            </NavLink>
-          ))}
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
         <div className="hidden lg:flex items-center gap-4">
           <button onClick={onBookClick} className="btn-dark text-sm">
@@ -57,18 +58,18 @@ const Header = ({ onBookClick }) => {
       </div>
       {mobileOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 px-6 py-4 space-y-3">
-          {navLinks.map((l) => (
-            <NavLink
-              key={l.label}
-              to={l.to}
-              end={l.to === '/'}
-              className={({ isActive }) =>
-                `block text-[15px] font-medium ${isActive ? 'text-fuchsia-700' : 'text-[#1c1a1f]'}`
-              }
-            >
-              {l.label}
-            </NavLink>
-          ))}
+          {navLinks.map((l) => {
+            const isActive = pathname === l.to;
+            return (
+              <Link
+                key={l.label}
+                href={l.to}
+                className={`block text-[15px] font-medium ${isActive ? 'text-fuchsia-700' : 'text-[#1c1a1f]'}`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
           <button
             onClick={() => { setMobileOpen(false); onBookClick && onBookClick(); }}
             className="btn-dark text-sm w-full justify-center"

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { services } from '../mock';
+import { services } from '@/lib/mock';
 
 const ServicesPreview = () => {
   return (
@@ -20,7 +20,7 @@ const ServicesPreview = () => {
             Kabira is here to guide you through life’s challenges with empathy and expertise.
           </p>
           <div className="mt-8">
-            <Link to="/services" className="btn-outline-dark">View all services</Link>
+            <Link href="/services" className="btn-outline-dark">View all services</Link>
           </div>
         </div>
 
@@ -34,7 +34,7 @@ const ServicesPreview = () => {
                 <h3 className="font-serif-display text-[28px] text-[#1c1a1f] mb-2">{s.title}</h3>
                 <p className="text-[12px] uppercase tracking-[0.22em] text-[#9b97a4] mb-3">{s.tag}</p>
                 <p className="text-[14.5px] text-[#4b4753] mb-5">{s.excerpt}</p>
-                <Link to={`/services/${s.id}`} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
+                <Link href={`/services/${s.id}`} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
                   Read more
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                 </Link>

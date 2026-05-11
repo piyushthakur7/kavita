@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Facebook, Youtube, Instagram, ArrowUp } from 'lucide-react';
 import Logo from './Logo';
 import { ContactInfo } from './Contact';
-import { useToast } from '../hooks/use-toast';
-import { navLinks } from '../mock';
+import { useToast } from '@/hooks/use-toast';
+import { navLinks } from '@/lib/mock';
 
 const Footer = () => {
   const { toast } = useToast();
@@ -73,7 +73,7 @@ const Footer = () => {
           <ul className="space-y-2.5">
             {navLinks.map((l) => (
               <li key={l.label}>
-                <Link to={l.to} className="text-[14px] text-white/70 hover:text-white transition">{l.label}</Link>
+                <Link href={l.to} className="text-[14px] text-white/70 hover:text-white transition">{l.label}</Link>
               </li>
             ))}
           </ul>

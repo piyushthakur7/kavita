@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Quote, ArrowLeft, ArrowRight } from 'lucide-react';
-import { testimonials } from '../mock';
+import { testimonials } from '@/lib/mock';
 
 const Testimonials = () => {
   const [idx, setIdx] = useState(0);

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Phone, CalendarCheck } from 'lucide-react';
-import { aboutImage, drImage, contact } from '../mock';
+import { aboutImage, drImage, contact } from '@/lib/mock';
 
 const About = ({ onBookClick }) => {
   return (
@@ -53,13 +53,13 @@ const About = ({ onBookClick }) => {
             </p>
             <p className="text-[#1c1a1f]">
               Call us 24/7. We can answer{' '}
-              <Link to="/contact" className="underline decoration-fuchsia-400 underline-offset-4">
+              <Link href="/contact" className="underline decoration-fuchsia-400 underline-offset-4">
                 all your questions.
               </Link>
             </p>
           </div>
           <div className="mt-8">
-            <Link to="/about" className="btn-dark">Read More</Link>
+            <Link href="/about" className="btn-dark">Read More</Link>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { useToast } from '../hooks/use-toast';
-import { contact } from '../mock';
+import { useToast } from '@/hooks/use-toast';
+import { contact } from '@/lib/mock';
 
 const ContactCTA = () => {
   return (

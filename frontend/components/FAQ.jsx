@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from './ui/accordion';
-import { faqs } from '../mock';
+import { faqs } from '@/lib/mock';
 
 const FAQ = () => {
   return (

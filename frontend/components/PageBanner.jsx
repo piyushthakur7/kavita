@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
-import { pageBannerImage } from '../mock';
+import { pageBannerImage } from '@/lib/mock';
 
 const PageBanner = ({ title, subtitle, crumbs = [], image }) => {
   return (
@@ -23,12 +23,12 @@ const PageBanner = ({ title, subtitle, crumbs = [], image }) => {
           {title}
         </h1>
         <nav className="mt-7 flex items-center gap-2 text-[13px] text-[#5b5670] flex-wrap">
-          <Link to="/" className="hover:text-[#1c1a1f]">Home</Link>
+          <Link href="/" className="hover:text-[#1c1a1f]">Home</Link>
           {crumbs.map((c, i) => (
             <React.Fragment key={i}>
               <ChevronRight size={14} className="opacity-60" />
               {c.to ? (
-                <Link to={c.to} className="hover:text-[#1c1a1f]">{c.label}</Link>
+                <Link href={c.to} className="hover:text-[#1c1a1f]">{c.label}</Link>
               ) : (
                 <span className="text-[#1c1a1f] font-medium">{c.label}</span>
               )}
