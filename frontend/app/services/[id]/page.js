@@ -5,14 +5,12 @@ import { ArrowLeft, Phone, CalendarCheck } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import ContactCTA from '@/components/Contact';
 import { services, contact } from '@/lib/mock';
+import { useModal } from '@/context/ModalContext';
 
 export default function ServiceDetailPage({ params }) {
   const { id } = use(params);
+  const { openModal } = useModal();
   const service = services.find((s) => s.id === id);
-
-  const handleBookClick = () => {
-    // Handled via layout modal context later
-  };
 
   if (!service) {
     return (
@@ -56,7 +54,7 @@ export default function ServiceDetailPage({ params }) {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">
-              <button onClick={handleBookClick} className="btn-dark">
+              <button onClick={openModal} className="btn-dark">
                 <CalendarCheck size={16} /> Book a Session
               </button>
               <a href={`tel:${contact.phoneRaw}`} className="btn-outline-dark">

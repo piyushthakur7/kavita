@@ -1,15 +1,18 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import { navLinks } from '@/lib/mock';
+import { useModal } from '@/context/ModalContext';
 
-const Header = ({ onBookClick }) => {
+const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const { openModal } = useModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -44,7 +47,7 @@ const Header = ({ onBookClick }) => {
           })}
         </nav>
         <div className="hidden lg:flex items-center gap-4">
-          <button onClick={onBookClick} className="btn-dark text-sm">
+          <button onClick={openModal} className="btn-dark text-sm">
             Book Appointment
           </button>
         </div>
@@ -71,7 +74,7 @@ const Header = ({ onBookClick }) => {
             );
           })}
           <button
-            onClick={() => { setMobileOpen(false); onBookClick && onBookClick(); }}
+            onClick={() => { setMobileOpen(false); openModal(); }}
             className="btn-dark text-sm w-full justify-center"
           >
             Book Appointment

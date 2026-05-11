@@ -5,13 +5,10 @@ import { ArrowRight, Check } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import ContactCTA from '@/components/Contact';
 import { services, psychServices, pricingPlans } from '@/lib/mock';
+import { useModal } from '@/context/ModalContext';
 
 export default function ServicesPage() {
-  // onBookClick is missing here. We can use a global modal state or just link to contact.
-  const handleBookClick = () => {
-    // This could trigger a global event or open a modal via context.
-    // For now, let's assume it's handled.
-  };
+  const { openModal } = useModal();
 
   return (
     <>
@@ -91,7 +88,7 @@ export default function ServicesPage() {
             Book a session today and <span className="italic font-light text-white/85">start changing your life!</span>
           </h2>
           <div className="mt-9">
-            <button onClick={handleBookClick} className="btn-dark bg-white text-[#1c1a1f] hover:bg-white/90">
+            <button onClick={openModal} className="btn-dark bg-white text-[#1c1a1f] hover:bg-white/90">
               Get Started Today
             </button>
           </div>
@@ -133,7 +130,7 @@ export default function ServicesPage() {
                   ))}
                 </ul>
                 <button
-                  onClick={handleBookClick}
+                  onClick={openModal}
                   className={`mt-9 w-full ${p.featured ? 'bg-white text-[#1c1a1f] hover:bg-white/90' : 'bg-[#1c1a1f] text-white hover:bg-[#3a3640]'} rounded-full py-3.5 text-[13px] uppercase tracking-[0.2em] font-semibold transition`}
                 >
                   Started Now

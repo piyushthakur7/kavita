@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { Quote, ArrowLeft, ArrowRight } from 'lucide-react';
 import { testimonials } from '@/lib/mock';

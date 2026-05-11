@@ -1,4 +1,6 @@
 import { useToast } from "@/hooks/use-toast"
+"use client"
+
 import {
   Toast,
   ToastClose,

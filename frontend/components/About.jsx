@@ -1,9 +1,12 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
 import { Phone, CalendarCheck } from 'lucide-react';
 import { aboutImage, drImage, contact } from '@/lib/mock';
+import { useModal } from '@/context/ModalContext';
 
-const About = ({ onBookClick }) => {
+const About = () => {
+  const { openModal } = useModal();
   return (
     <section id="about" className="py-24 lg:py-32 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-14 items-center">
@@ -20,7 +23,7 @@ const About = ({ onBookClick }) => {
                 <a href={`tel:${contact.phoneRaw}`} className="flex items-center gap-2 text-[12.5px] text-[#1c1a1f] hover:text-fuchsia-700">
                   <Phone size={13} /> {contact.phone.replace('+91-', '')}
                 </a>
-                <button onClick={onBookClick} className="flex items-center gap-2 text-[12.5px] text-[#1c1a1f] hover:text-fuchsia-700">
+                <button onClick={openModal} className="flex items-center gap-2 text-[12.5px] text-[#1c1a1f] hover:text-fuchsia-700">
                   <CalendarCheck size={13} /> Book Appointment
                 </button>
               </div>
