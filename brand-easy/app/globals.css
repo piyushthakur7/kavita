@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Lato", sans-serif;
+}
+
+@theme {
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+:root {
+  --blue:        #0099D4;
+  --blue-dark:   #0077A8;
+  --blue-deeper: #005A80;
+  --blue-light:  #E0F4FB;
+  --green:       #2DB34A;
+  --green-dark:  #1F8A37;
+  --green-deeper:#155C25;
+  --green-light: #E4F7E9;
+  --white:       #FFFFFF;
+  --off-white:   #F3FAFD;
+  --text-dark:   #0A2733;
+  --text-mid:    #2A5566;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--off-white);
+  color: var(--text-dark);
+  font-family: 'Lato', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Light blue-tinted background with subtle crosshatch pattern */
+.floral-bg {
+  background-color: #F3FAFD;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%230099D4' fill-opacity='0.055'%3E%3Crect x='36' y='4' width='8' height='32' rx='4'/%3E%3Crect x='36' y='44' width='8' height='32' rx='4'/%3E%3Crect x='4' y='36' width='32' height='8' rx='4'/%3E%3Crect x='44' y='36' width='32' height='8' rx='4'/%3E%3Ccircle cx='40' cy='40' r='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Deep blue background with green-tinted subtle pattern */
+.maroon-floral-bg {
+  background-color: #0077A8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%232DB34A' fill-opacity='0.08'%3E%3Crect x='36' y='4' width='8' height='32' rx='4'/%3E%3Crect x='36' y='44' width='8' height='32' rx='4'/%3E%3Crect x='4' y='36' width='32' height='8' rx='4'/%3E%3Crect x='44' y='36' width='32' height='8' rx='4'/%3E%3Ccircle cx='40' cy='40' r='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+  display: flex;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--off-white); }
+::-webkit-scrollbar-thumb  { background: var(--blue); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green); }
