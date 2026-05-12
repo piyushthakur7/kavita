@@ -1,13 +1,6 @@
 {
   "name": "kavita-monorepo",
   "private": true,
-  "scripts": {
-    "build": "npm run build --workspace=frontend"
-  },
-  "workspaces": [
-    "frontend",
-    "brand-easy"
-  ],
   "engines": {
     "node": ">=18.17.0"
   }
