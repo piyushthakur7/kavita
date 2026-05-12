@@ -1,7 +1,5 @@
 {
   "version": 2,
   "rootDirectory": "frontend",
-  "buildCommand": "next build",
-  "installCommand": "npm install --prefix ..",
   "framework": "nextjs"
 }
