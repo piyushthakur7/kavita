@@ -2,6 +2,6 @@
   "version": 2,
   "rootDirectory": "frontend",
   "buildCommand": "next build",
-  "installCommand": "npm install",
+  "installCommand": "npm install --prefix ..",
   "framework": "nextjs"
 }
