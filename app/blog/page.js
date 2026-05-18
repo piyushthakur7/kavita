@@ -3,8 +3,19 @@ import Blog from '@/components/Blog';
 import PageBanner from '@/components/PageBanner';
 import ContactCTA from '@/components/Contact';
 import { blogBanner } from '@/lib/mock';
+import prisma from '@/lib/prisma';
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  // Fetch published blogs from SQLite database in real-time
+  const blogs = await prisma.blog.findMany({
+    where: {
+      published: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
   return (
     <>
       <PageBanner
@@ -13,7 +24,7 @@ export default function BlogPage() {
         image={blogBanner}
         crumbs={[{ label: 'Blog' }]}
       />
-      <Blog />
+      <Blog blogs={blogs} />
       <ContactCTA />
     </>
   );

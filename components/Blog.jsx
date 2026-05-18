@@ -3,10 +3,26 @@ import Link from 'next/link';
 import { ArrowRight, Eye, ThumbsUp, MessageSquare } from 'lucide-react';
 import { blogPosts } from '@/lib/mock';
 
-const Blog = ({ limit }) => {
-  const items = limit ? blogPosts.slice(0, limit) : blogPosts;
+const Blog = ({ limit, blogs }) => {
+  // Helper to format date strings cleanly
+  const formatDate = (dateVal) => {
+    try {
+      return new Date(dateVal).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+    } catch (e) {
+      return String(dateVal);
+    }
+  };
+
+  // Resolve display items: use DB blogs if provided, otherwise fallback to mock posts
+  const rawItems = blogs && blogs.length > 0 ? blogs : blogPosts;
+  const items = limit ? rawItems.slice(0, limit) : rawItems;
+
   return (
-    <section id="blog" className="py-24 lg:py-32 bg-white">
+    <section id="blog" className="py-24 lg:py-32 bg-white select-none">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div>
@@ -17,7 +33,7 @@ const Blog = ({ limit }) => {
               Resources
             </h2>
             <p className="mt-5 max-w-xl text-[15.5px] text-[#4b4753]">
-              Contact Kavita Kabira Wellness Clinic for more details! It is always good to have
+              Contact Dr. Kavita Kabira Wellness Clinic for more details! It is always good to have
               someone guide you along the way.
             </p>
           </div>
@@ -25,32 +41,37 @@ const Blog = ({ limit }) => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-          {items.map((p) => (
-            <article key={p.id} className="svc-card group bg-white border border-gray-100 rounded-3xl overflow-hidden">
-              <Link href={`/blog/${p.id}`} className="block h-60 overflow-hidden">
-                <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </Link>
-              <div className="p-7">
-                <span className="inline-block text-[10.5px] uppercase tracking-[0.25em] font-semibold text-fuchsia-700 bg-fuchsia-50 px-3 py-1 rounded-full mb-4">
-                  {p.category}
-                </span>
-                <h3 className="font-serif-display text-[22px] leading-snug text-[#1c1a1f] mb-3">
-                  <Link href={`/blog/${p.id}`} className="hover:text-fuchsia-700 transition-colors">{p.title}</Link>
-                </h3>
-                <p className="text-[14px] text-[#4b4753] leading-relaxed mb-5">{p.excerpt}</p>
-                <div className="flex items-center gap-4 text-[11.5px] text-[#9b97a4] mb-5 flex-wrap">
-                  <span>Published: {p.date}</span>
-                  <span className="flex items-center gap-1"><Eye size={13} /> {p.views}</span>
-                  <span className="flex items-center gap-1"><ThumbsUp size={13} /> {p.likes}</span>
-                  <span className="flex items-center gap-1"><MessageSquare size={13} /> {p.comments}</span>
-                </div>
-                <Link href={`/blog/${p.id}`} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
-                  Read more
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+          {items.map((p) => {
+            const coverImage = p.coverImage || p.image;
+            const targetLink = `/blog/${p.slug || p.id}`;
+            const displayDate = p.createdAt ? formatDate(p.createdAt) : p.date;
+
+            return (
+              <article key={p.id} className="svc-card group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                <Link href={targetLink} className="block h-60 overflow-hidden">
+                  <img src={coverImage} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </Link>
-              </div>
-            </article>
-          ))}
+                <div className="p-7">
+                  <span className="inline-block text-[10.5px] uppercase tracking-[0.25em] font-semibold text-fuchsia-700 bg-fuchsia-50 px-3 py-1 rounded-full mb-4">
+                    {p.category}
+                  </span>
+                  <h3 className="font-serif-display text-[22px] leading-snug text-[#1c1a1f] mb-3">
+                    <Link href={targetLink} className="hover:text-fuchsia-700 transition-colors">{p.title}</Link>
+                  </h3>
+                  <p className="text-[14px] text-[#4b4753] leading-relaxed mb-5">{p.excerpt}</p>
+                  <div className="flex items-center gap-4 text-[11.5px] text-[#9b97a4] mb-5 flex-wrap">
+                    <span>Published: {displayDate}</span>
+                    <span className="flex items-center gap-1"><Eye size={13} /> {p.views}</span>
+                    <span className="flex items-center gap-1"><ThumbsUp size={13} /> {p.likes}</span>
+                  </div>
+                  <Link href={targetLink} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
+                    Read more
+                    <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

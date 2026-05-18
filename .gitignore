@@ -26,3 +26,5 @@ yarn-error.log*
 .next/
 out/
 
+
+/lib/generated/prisma
