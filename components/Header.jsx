@@ -33,7 +33,7 @@ const Header = () => {
         
         <Logo light={scrolled || !isHome || mobileOpen} />
         
-        <nav className="hidden lg:flex items-center gap-9 select-none">
+        <nav className="hidden lg:flex items-center gap-10 select-none">
           {navLinks.map((l) => {
             const isActive = pathname === l.to || (l.subLinks && l.subLinks.some(s => pathname === s.to));
             
@@ -46,23 +46,22 @@ const Header = () => {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className={`flex items-center gap-1 text-[15px] font-semibold transition-all duration-300 py-1 ${
+                    className={`text-[15px] font-medium transition-all duration-300 py-1 border-b-2 ${
                       isActive 
-                        ? 'text-kavita-tan' 
-                        : 'text-gray-800 hover:text-kavita-darkblue'
+                        ? 'text-gray-900 border-gray-900' 
+                        : 'text-gray-700 border-transparent hover:text-gray-900 hover:border-gray-900'
                     }`}
                   >
                     {l.label}
-                    <svg className="w-4 h-4 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                   </button>
                   
                   {activeDropdown === l.label && (
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-xl py-2 flex flex-col animate-[fadeIn_.2s_ease]">
+                    <div className="absolute top-full left-0 mt-3 min-w-[200px] bg-[#1e2235] rounded-md shadow-2xl py-3 flex flex-col animate-[fadeIn_.2s_ease]">
                       {l.subLinks.map(sub => (
                         <Link 
                           key={sub.label} 
                           href={sub.to}
-                          className="px-4 py-2 text-sm text-gray-700 hover:text-kavita-tan hover:bg-gray-50 transition-colors"
+                          className="px-5 py-2.5 text-[14px] text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
                         >
                           {sub.label}
                         </Link>
@@ -77,10 +76,10 @@ const Header = () => {
               <Link
                 key={l.label}
                 href={l.to}
-                className={`relative text-[15px] font-semibold transition-all duration-300 py-1 ${
+                className={`relative text-[15px] font-medium transition-all duration-300 py-1 border-b-2 ${
                   isActive 
-                    ? 'text-kavita-tan' 
-                    : 'text-gray-800 hover:text-kavita-darkblue'
+                    ? 'text-gray-900 border-gray-900' 
+                    : 'text-gray-700 border-transparent hover:text-gray-900 hover:border-gray-900'
                 }`}
               >
                 {l.label}
@@ -88,15 +87,6 @@ const Header = () => {
             );
           })}
         </nav>
-        
-        <div className="hidden lg:flex items-center gap-5">
-          <button 
-            onClick={openModal} 
-            className="btn-primary"
-          >
-            Book Appointment
-          </button>
-        </div>
 
         <button
           className="lg:hidden p-2 text-gray-800 hover:text-kavita-tan"
@@ -122,7 +112,7 @@ const Header = () => {
                         key={sub.label} 
                         href={sub.to}
                         className={`text-sm py-1 transition-colors ${
-                          pathname === sub.to ? 'text-kavita-tan' : 'text-gray-600 hover:text-kavita-darkblue'
+                          pathname === sub.to ? 'text-kavita-tan' : 'text-gray-600 hover:text-gray-900'
                         }`}
                       >
                         {sub.label}
@@ -138,21 +128,13 @@ const Header = () => {
                 key={l.label}
                 href={l.to}
                 className={`block text-[15px] font-semibold py-2 transition-colors duration-300 ${
-                  isActive ? 'text-kavita-tan' : 'text-gray-800 hover:text-kavita-darkblue'
+                  isActive ? 'text-kavita-tan' : 'text-gray-800 hover:text-gray-900'
                 }`}
               >
                 {l.label}
               </Link>
             );
           })}
-          <div className="pt-4 border-t border-gray-100">
-            <button
-              onClick={() => { setMobileOpen(false); openModal(); }}
-              className="w-full justify-center btn-primary"
-            >
-              Book Appointment
-            </button>
-          </div>
         </div>
       )}
     </header>

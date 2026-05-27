@@ -7,58 +7,43 @@ const Hero = () => {
   const { openModal } = useModal();
 
   return (
-    <section id="home" className="relative bg-[#fdfdfb] text-gray-900 pt-32 pb-24 lg:pt-40 lg:pb-36 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-14 items-center relative z-10">
-        
-        {/* Left Column */}
-        <div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-kavita-tan/10 text-kavita-tan text-sm font-semibold tracking-wider uppercase mb-6">
-            <span>Online Therapy & Counseling</span>
-          </div>
+    <section id="home" className="relative bg-gradient-to-br from-[#e8e6f8] via-[#f2f1fb] to-[#ffffff] text-gray-900 overflow-hidden" style={{ minHeight: '100vh' }}>
+      
+      {/* Hero image — absolutely positioned on the right, full height */}
+      <img 
+        src="/images/image copy.png" 
+        alt="Dr. Kavita Kabira" 
+        className="absolute top-0 bottom-0 right-[2%] h-full w-auto object-contain object-bottom drop-shadow-[0px_0px_60px_rgba(200,190,250,0.7)] hidden lg:block z-10 pointer-events-none" 
+      />
 
-          <h1 className="font-serif-display leading-[1.1] text-[48px] sm:text-[64px] lg:text-[80px] tracking-tight">
-            Heal Your
+      {/* Content */}
+      <div className="relative z-20 max-w-[1400px] mx-auto px-6 lg:px-10 pt-40 pb-32 min-h-screen flex items-center">
+        <div className="max-w-[55%]">
+          <h1 className="font-serif-display leading-[1.05] text-[56px] sm:text-[72px] lg:text-[80px] xl:text-[90px] tracking-tight">
+            Transform Your
             <br />
-            <span className="italic font-normal text-kavita-tan">Inner Self.</span>
+            <span className="font-bold">Mental Health.</span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-[16px] sm:text-[18px] leading-relaxed text-gray-600">
-            Dr. Kavita Kabira fuses clinical psychological expertise with dynamic coaching. Experience compassionate, evidence-based therapy that amplifies your voice and restores psychological harmony.
-          </p>
-
           {/* Actions panel */}
-          <div className="mt-10 flex flex-wrap items-center gap-5">
+          <div className="mt-12 flex flex-wrap items-center gap-5">
             <button 
               onClick={openModal}
-              className="btn-primary"
+              className="px-8 py-3.5 bg-[#1f1f1f] text-white text-[15px] font-medium rounded-[30px] hover:bg-black transition-colors"
             >
               Get Free Consultation
             </button>
-            <Link 
-              href="/services" 
-              className="px-7 py-3.5 text-sm font-semibold text-gray-700 hover:text-kavita-tan transition-all"
-            >
-              Explore Services →
-            </Link>
           </div>
         </div>
+      </div>
 
-        {/* Right Column: Clean Hero Image */}
-        <div className="flex justify-center select-none relative">
-          <div className="w-full max-w-[500px] h-[600px] rounded-[20px] overflow-hidden relative shadow-2xl">
-            <img 
-              src="/images/DSC_0146.jpeg" 
-              alt="Dr. Kavita Kabira" 
-              className="w-full h-full object-cover" 
-            />
-          </div>
-          
-          <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-xl max-w-[280px]">
-            <h4 className="font-serif-display text-xl font-bold text-gray-900">Dr. Kavita Kabira</h4>
-            <p className="text-gray-500 text-sm mt-2">Leading Voice in Psychological Wellness & Coaching</p>
-          </div>
-        </div>
-
+      {/* Mobile image — shown below text on small screens */}
+      <div className="lg:hidden flex justify-center -mt-20 pb-0">
+        <img 
+          src="/images/image copy.png" 
+          alt="Dr. Kavita Kabira" 
+          className="w-auto h-[400px] object-contain object-bottom drop-shadow-[0px_0px_40px_rgba(200,190,250,0.7)]" 
+        />
       </div>
     </section>
   );
