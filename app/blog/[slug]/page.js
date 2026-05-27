@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Calendar, Eye, ThumbsUp, ArrowLeft, User, MessageSquare } from 'lucide-react';
 import prisma from '@/lib/prisma';
+
+export const dynamic = 'force-dynamic';
 import PageBanner from '@/components/PageBanner';
 import ContactCTA from '@/components/Contact';
 import sanitizeHtml from 'sanitize-html';

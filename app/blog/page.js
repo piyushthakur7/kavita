@@ -5,6 +5,8 @@ import ContactCTA from '@/components/Contact';
 import { blogBanner } from '@/lib/mock';
 import prisma from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export default async function BlogPage() {
   // Fetch published blogs from SQLite database in real-time
   const blogs = await prisma.blog.findMany({

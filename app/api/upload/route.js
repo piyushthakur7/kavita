@@ -20,6 +20,36 @@ export async function POST(request) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseBucket = process.env.SUPABASE_STORAGE_BUCKET || 'blog-images';
+
+    if (supabaseUrl && supabaseKey) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      const ext = path.extname(file.name) || '.jpg';
+      const filename = `${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}${ext}`;
+      const uploadUrl = `${supabaseUrl}/storage/v1/object/${supabaseBucket}/${filename}`;
+
+      const response = await fetch(uploadUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${supabaseKey}`,
+          'apiKey': supabaseKey,
+          'Content-Type': file.type || 'image/jpeg',
+        },
+        body: buffer,
+      });
+
+      const resData = await response.json();
+      if (!response.ok) {
+        throw new Error(resData.message || 'Supabase storage upload failed');
+      }
+
+      const publicUrl = `${supabaseUrl}/storage/v1/object/public/${supabaseBucket}/${filename}`;
+      return NextResponse.json({ success: true, url: publicUrl });
+    }
+
     const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
     const apiKey = process.env.CLOUDINARY_API_KEY;
     const apiSecret = process.env.CLOUDINARY_API_SECRET;
