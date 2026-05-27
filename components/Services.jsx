@@ -1,77 +1,61 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { services } from '@/lib/mock';
+import { psychServices } from '@/lib/mock';
 
-const ServicesPreview = () => {
+const Services = () => {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-[#f0eff5]">
+    <section id="services" className="py-20 lg:py-28 bg-[#fdfdfd] border-t border-gray-50">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">
+            WE PROVIDE WHAT
+          </p>
+          <h2 className="font-serif-display text-[42px] sm:text-[54px] lg:text-[64px] leading-tight text-[#1c1a1f]">
+            Psychological Services
+          </h2>
+          <p className="mt-5 text-[15.5px] leading-relaxed text-[#4b4753]">
+            Our goal is to provide customers with the best service, for us to help customers
+            overcome their barriers is a noble task
+          </p>
+        </div>
 
-          {/* Left Column: Text */}
-          <div>
-            <h2 className="font-serif-display text-[32px] text-gray-800 mb-1">
-              Our Services
-            </h2>
-            <h3 className="font-serif-display text-[42px] sm:text-[48px] leading-[1.1] text-gray-900 font-bold mb-6">
-              Your Right Choice
-            </h3>
-
-            {/* Dark divider */}
-            <div className="w-full max-w-[400px] h-[3px] bg-[#1e2235] mb-8"></div>
-
-            <p className="text-[15px] leading-[1.8] text-gray-600 mb-8">
-              At <b className="text-gray-900">Kavita Kabira Wellness Clinic</b>, we are dedicated to providing holistic and compassionate mental health care. As the <b className="text-gray-900">Best Psychologist in Gurgaon</b>, Dr. Kavita Kabira is here to guide you through life&apos;s challenges with empathy and expertise. We believe in empowering our clients, offering personalized care that goes beyond mere problem-solving to help you achieve lasting mental well-being. Our goal is to support you as you transform your life and find peace, balance, and clarity.
-            </p>
-
-            <Link 
-              href="/services" 
-              className="inline-block px-8 py-3.5 bg-[#1f1f1f] text-white text-[14px] font-medium rounded-[4px] hover:bg-black transition-colors"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {psychServices.map((s) => (
+            <article 
+              key={s.id} 
+              className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500"
             >
-              View all services
-            </Link>
-          </div>
-
-          {/* Right Column: Service Cards */}
-          <div className="grid sm:grid-cols-3 gap-6">
-            {services.map((s) => (
-              <article key={s.id} className="flex flex-col items-center text-center">
-                {/* Image peeking above */}
-                <div className="w-full h-[160px] rounded-t-lg overflow-hidden mb-0">
-                  <img 
-                    src={s.image} 
-                    alt={s.title} 
-                    className="w-full h-full object-cover" 
-                  />
-                </div>
-
-                {/* Card body */}
-                <div className="bg-white rounded-b-lg p-6 w-full flex-1 flex flex-col items-center shadow-sm">
-                  <h4 className="font-serif-display text-[22px] text-gray-900 mb-2 mt-2">
-                    {s.title}
-                  </h4>
-                  <p className="text-[12px] uppercase tracking-[0.15em] text-kavita-tan font-semibold mb-3">
-                    {s.tag}
-                  </p>
-                  <p className="text-[13px] text-gray-500 leading-relaxed mb-5 flex-1">
-                    {s.excerpt}
-                  </p>
-                  <Link 
-                    href={`/services/${s.id}`} 
-                    className="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-500 hover:border-gray-900 hover:text-gray-900 transition-colors"
-                  >
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
+              {/* Image container */}
+              <div className="h-[260px] overflow-hidden relative">
+                <img 
+                  src={s.image} 
+                  alt={s.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" 
+                />
+              </div>
+              {/* Card body */}
+              <div className="p-8 flex-1 flex flex-col items-center text-center">
+                <h3 className="font-serif-display text-[24px] text-[#1c1a1f] mb-3 font-semibold transition-colors duration-300">
+                  {s.title}
+                </h3>
+                <p className="text-[14.5px] text-[#5b5670] leading-relaxed mb-6 flex-1">
+                  {s.excerpt}
+                </p>
+                <a 
+                  href="https://wa.me/919971880693" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-3 bg-[#050302] hover:bg-[#c5a48e] text-white text-[12px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 rounded-[2px]"
+                >
+                  CONTACT US
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default ServicesPreview;
+export default Services;

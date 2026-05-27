@@ -61,8 +61,8 @@ export default function ContactPage() {
                   <Phone className="text-fuchsia-700" size={18} />
                 </div>
                 <div>
-                  <p className="font-medium text-[#1c1a1f] text-[15px]">Phone</p>
-                  <a href={`tel:${contact.phoneRaw}`} className="text-[14px] text-[#4b4753] hover:text-fuchsia-700">{contact.phone}</a>
+                  <p className="font-medium text-[#1c1a1f] text-[15px]">Phone / WhatsApp</p>
+                  <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#4b4753] hover:text-fuchsia-700">{contact.phone}</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">

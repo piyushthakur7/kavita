@@ -45,7 +45,7 @@ export default function ServicesPage() {
                   <img 
                     src={s.image} 
                     alt={s.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" 
                   />
                 </div>
                 {/* Card body */}
@@ -56,12 +56,14 @@ export default function ServicesPage() {
                   <p className="text-[14.5px] text-[#5b5670] leading-relaxed mb-6 flex-1">
                     {s.excerpt}
                   </p>
-                  <Link 
-                    href="/contact" 
+                  <a 
+                    href="https://wa.me/919971880693" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-block px-8 py-3 bg-[#050302] hover:bg-[#c5a48e] text-white text-[12px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 rounded-[2px]"
                   >
                     CONTACT US
-                  </Link>
+                  </a>
                 </div>
               </article>
             ))}

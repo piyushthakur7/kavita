@@ -18,7 +18,7 @@ const ContactCTA = () => {
           </p>
         </div>
         <div className="flex flex-wrap gap-4 lg:justify-end">
-          <a href={`tel:${contact.phoneRaw}`} className="px-7 py-4 rounded bg-white text-kavita-darkblue font-bold tracking-wider hover:bg-gray-100 transition-colors uppercase text-sm flex items-center gap-2">
+          <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" className="px-7 py-4 rounded bg-white text-kavita-darkblue font-bold tracking-wider hover:bg-gray-100 transition-colors uppercase text-sm flex items-center gap-2">
             <Phone size={18} /> {contact.phone}
           </a>
           <a href={`mailto:${contact.email}`} className="px-7 py-4 rounded border-2 border-white text-white font-bold tracking-wider hover:bg-white hover:text-kavita-darkblue transition-colors uppercase text-sm flex items-center gap-2">
@@ -117,7 +117,7 @@ export const ContactInfo = () => (
     </div>
     <div className="flex items-start gap-3 text-gray-600 font-medium">
       <Phone size={18} className="mt-0.5 text-kavita-tan" />
-      <a href={`tel:${contact.phoneRaw}`} className="hover:text-kavita-tan">{contact.phone}</a>
+      <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-kavita-tan">{contact.phone}</a>
     </div>
     <div className="flex items-start gap-3 text-gray-600 font-medium">
       <Mail size={18} className="mt-0.5 text-kavita-tan" />

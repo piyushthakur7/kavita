@@ -57,7 +57,7 @@ export default function ServiceDetailPage({ params }) {
               <button onClick={openModal} className="btn-dark">
                 <CalendarCheck size={16} /> Book a Session
               </button>
-              <a href={`tel:${contact.phoneRaw}`} className="btn-outline-dark">
+              <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-outline-dark">
                 <Phone size={16} /> {contact.phone}
               </a>
             </div>
