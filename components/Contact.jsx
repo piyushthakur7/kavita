@@ -46,7 +46,13 @@ export const AppointmentModal = ({ open, onClose }) => {
     const saved = JSON.parse(localStorage.getItem('kk_appointments') || '[]');
     saved.push({ ...form, at: new Date().toISOString() });
     localStorage.setItem('kk_appointments', JSON.stringify(saved));
-    toast({ title: 'Appointment Requested', description: 'We will reach out to you shortly.' });
+    
+    // Trigger mailto email sending
+    const subjectLine = `New Appointment Request from ${form.name}`;
+    const bodyText = `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\nMessage:\n${form.message || 'None'}`;
+    window.location.href = `mailto:kavitakabira1@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(bodyText)}`;
+
+    toast({ title: 'Email Client Opened', description: 'Redirecting to send your request to kavitakabira1@gmail.com.' });
     setForm({ name: '', email: '', phone: '', message: '' });
     onClose();
   };

@@ -23,7 +23,13 @@ export default function ContactPage() {
     const all = JSON.parse(localStorage.getItem('kk_contact') || '[]');
     all.push({ ...form, at: new Date().toISOString() });
     localStorage.setItem('kk_contact', JSON.stringify(all));
-    toast({ title: 'Message sent', description: 'We will get back to you within 24 hours.' });
+    
+    // Trigger mailto email sending
+    const subjectLine = form.subject || `New Contact Message from ${form.name}`;
+    const bodyText = `Name: ${form.name}\nEmail: ${form.email}\nSubject: ${form.subject || 'None'}\n\nMessage:\n${form.message}`;
+    window.location.href = `mailto:kavitakabira1@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(bodyText)}`;
+    
+    toast({ title: 'Email Client Opened', description: 'Redirecting to send your message to kavitakabira1@gmail.com.' });
     setForm({ name: '', email: '', subject: '', message: '', agree: false });
   };
 
