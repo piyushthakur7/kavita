@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Check } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import ContactCTA from '@/components/Contact';
-import { services, psychServices, pricingPlans } from '@/lib/mock';
+import { psychServices, pricingPlans } from '@/lib/mock';
 import { useModal } from '@/context/ModalContext';
 
 export default function ServicesPage() {
@@ -14,66 +14,53 @@ export default function ServicesPage() {
     <>
       <PageBanner
         title={<><span>Our</span> <span className="italic font-light">Services</span></>}
-        subtitle="We Provide What"
-        crumbs={[{ label: 'Services' }]}
+        subtitle="WE PROVIDE WHAT"
+        crumbs={[{ label: 'Our Services' }]}
       />
 
+      {/* Psychological Services Grid Section */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">Featured</p>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">
+              WE PROVIDE WHAT
+            </p>
             <h2 className="font-serif-display text-[42px] sm:text-[54px] lg:text-[64px] leading-tight text-[#1c1a1f]">
-              Core <span className="italic font-light">Programs</span>
+              Psychological <span className="italic font-light">Services</span>
             </h2>
-            <p className="mt-5 text-[15.5px] text-[#4b4753]">
-              Targeted therapy programs designed to address the most common emotional and
-              psychological challenges with compassion and clinical rigor.
+            <p className="mt-5 text-[15.5px] leading-relaxed text-[#4b4753]">
+              Our goal is to provide customers with the best service, for us to help customers
+              overcome their barriers is a noble task
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {services.map((s) => (
-              <article key={s.id} className="svc-card group bg-white rounded-3xl overflow-hidden border border-gray-100">
-                <Link href={`/services/${s.id}`} className="block h-64 overflow-hidden">
-                  <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                </Link>
-                <div className="p-7">
-                  <h3 className="font-serif-display text-[28px] text-[#1c1a1f] mb-2">{s.title}</h3>
-                  <p className="text-[12px] uppercase tracking-[0.22em] text-[#9b97a4] mb-3">{s.tag}</p>
-                  <p className="text-[14.5px] text-[#4b4753] mb-5">{s.excerpt}</p>
-                  <Link href={`/services/${s.id}`} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
-                    Read more
-                    <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="section-light py-20 lg:py-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">Psychological Services</p>
-            <h2 className="font-serif-display text-[42px] sm:text-[54px] lg:text-[64px] leading-tight text-[#1c1a1f]">
-              Comprehensive <span className="italic font-light">Care</span>
-            </h2>
-            <p className="mt-5 text-[15.5px] text-[#4b4753]">
-              Our goal is to provide customers with the best service. For us, helping clients
-              overcome their barriers is a noble task.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {psychServices.map((s) => (
-              <article key={s.id} className="svc-card bg-white rounded-3xl overflow-hidden border border-gray-100 group">
-                <div className="h-56 overflow-hidden">
-                  <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <article 
+                key={s.id} 
+                className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500"
+              >
+                {/* Image container */}
+                <div className="h-[260px] overflow-hidden relative">
+                  <img 
+                    src={s.image} 
+                    alt={s.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" 
+                  />
                 </div>
-                <div className="p-6">
-                  <h3 className="font-serif-display text-[24px] text-[#1c1a1f] mb-3">{s.title}</h3>
-                  <p className="text-[14px] text-[#4b4753] mb-5 leading-relaxed">{s.excerpt}</p>
-                  <Link href="/contact" className="text-[12px] uppercase tracking-[0.25em] font-semibold text-fuchsia-700 hover:text-fuchsia-900">
-                    Contact Us →
+                {/* Card body */}
+                <div className="p-8 flex-1 flex flex-col items-center text-center">
+                  <h3 className="font-serif-display text-[24px] text-[#1c1a1f] mb-3 font-semibold group-hover:text-fuchsia-800 transition-colors duration-300">
+                    {s.title}
+                  </h3>
+                  <p className="text-[14.5px] text-[#5b5670] leading-relaxed mb-6 flex-1">
+                    {s.excerpt}
+                  </p>
+                  <Link 
+                    href="/contact" 
+                    className="inline-block px-8 py-3 bg-[#050302] hover:bg-[#c5a48e] text-white text-[12px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 rounded-[2px]"
+                  >
+                    CONTACT US
                   </Link>
                 </div>
               </article>
@@ -82,59 +69,85 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section-darker py-20 lg:py-24">
-        <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
-          <h2 className="font-serif-display text-[36px] sm:text-[48px] lg:text-[56px] leading-tight text-white">
-            Book a session today and <span className="italic font-light text-white/85">start changing your life!</span>
+      {/* Call to Action Banner Section with Lavender to White Gradient */}
+      <section className="relative py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-[#DAE0FF] to-white">
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center relative z-10">
+          <h2 className="font-serif-display text-[36px] sm:text-[44px] lg:text-[48px] leading-tight text-[#0A0606] font-medium">
+            Book a session today and <span className="italic font-light text-black/80">start changing your life!</span>
           </h2>
-          <div className="mt-9">
-            <button onClick={openModal} className="btn-dark bg-white text-[#1c1a1f] hover:bg-white/90">
-              Get Started Today
+          <div className="mt-8">
+            <button 
+              onClick={openModal} 
+              className="inline-block px-8 py-3.5 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 text-[#000000] text-[13px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 rounded-full cursor-pointer hover:shadow-md hover:-translate-y-0.5 transform"
+            >
+              GET STARTED TODAY
             </button>
           </div>
         </div>
       </section>
 
+      {/* Pricing Section */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">Our Prices</p>
+          <div className="text-center max-w-3xl mx-auto mb-6">
+            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">
+              OUR PRICES
+            </p>
             <h2 className="font-serif-display text-[42px] sm:text-[54px] lg:text-[64px] leading-tight text-[#1c1a1f]">
               Pricing <span className="italic font-light">Table</span>
             </h2>
-            <p className="mt-5 text-[15.5px] text-[#4b4753]">
-              We have reasonable prices to assure you. We work on the principle that the
-              customer comes first — not the money.
+            <p className="mt-5 text-[15.5px] leading-relaxed text-[#4b4753]">
+              We have a reasonable price to assure you, we work according to the principle that the
+              customer is the first, not the money
             </p>
+            {/* Divider line */}
+            <div className="w-14 h-[3px] bg-black mx-auto mt-6 mb-12"></div>
           </div>
-          <div className="grid md:grid-cols-3 gap-7">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mt-12">
             {pricingPlans.map((p) => (
-              <div key={p.id} className={`relative rounded-3xl p-9 border ${p.featured ? 'bg-[#1c1a1f] text-white border-[#1c1a1f] shadow-[0_30px_60px_-30px_rgba(40,30,80,0.5)] scale-[1.03]' : 'bg-white border-gray-200'}`}>
-                {p.featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-[11px] uppercase tracking-[0.2em] font-semibold bg-fuchsia-600 text-white rounded-full">
-                    Most Popular
-                  </span>
-                )}
-                <h3 className="font-serif-display text-[28px] uppercase tracking-wide">{p.name}</h3>
-                <p className={`text-[13px] mt-1 ${p.featured ? 'text-white/60' : 'text-[#7e7a86]'}`}>{p.subtitle}</p>
-                <div className="mt-6 flex items-baseline gap-1">
-                  <span className={`text-[14px] mt-2 ${p.featured ? 'text-white/70' : 'text-[#4b4753]'}`}>$</span>
-                  <span className="font-serif-display text-[64px] leading-none">{p.price}</span>
+              <div 
+                key={p.id} 
+                className="group relative bg-white border border-gray-100 shadow-[0_10px_35px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] rounded-[32px] overflow-hidden transition-all duration-500 flex flex-col hover:-translate-y-1 transform"
+              >
+                {/* Header */}
+                <div className="bg-[#090909] text-white p-8 text-center flex flex-col justify-center items-center relative">
+                  {p.featured && (
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 text-[10px] uppercase tracking-[0.2em] font-bold bg-[#c5a48e] text-white rounded-full">
+                      Most Popular
+                    </span>
+                  )}
+                  <h3 className="font-serif-display text-[26px] uppercase tracking-wider font-semibold">
+                    {p.name}
+                  </h3>
+                  <p className="text-[12.5px] mt-1 text-white/60 font-sans italic font-light">
+                    {p.subtitle}
+                  </p>
                 </div>
-                <ul className="mt-7 space-y-3">
-                  {p.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-2 text-[14px]">
-                      <Check size={16} className={p.featured ? 'text-fuchsia-400 mt-0.5 shrink-0' : 'text-fuchsia-700 mt-0.5 shrink-0'} />
-                      <span className={p.featured ? 'text-white/85' : 'text-[#4b4753]'}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  onClick={openModal}
-                  className={`mt-9 w-full ${p.featured ? 'bg-white text-[#1c1a1f] hover:bg-white/90' : 'bg-[#1c1a1f] text-white hover:bg-[#3a3640]'} rounded-full py-3.5 text-[13px] uppercase tracking-[0.2em] font-semibold transition`}
-                >
-                  Started Now
-                </button>
+
+                {/* Body */}
+                <div className="p-8 flex-1 flex flex-col items-center">
+                  <div className="my-6 flex items-baseline justify-center text-[#1c1a1f]">
+                    <span className="text-[20px] font-sans font-medium text-gray-400 self-start mt-2 mr-0.5">$</span>
+                    <span className="font-serif-display text-[64px] font-light leading-none">{p.price}</span>
+                  </div>
+
+                  <ul className="w-full border-t border-gray-100 pt-6 space-y-4 flex-1">
+                    {p.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-3 text-[14.5px] text-[#4b4753]">
+                        <Check size={18} className="text-[#c5a48e] mt-0.5 shrink-0" />
+                        <span className="leading-normal">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={openModal}
+                    className="w-full mt-8 py-3.5 bg-[#060303] hover:bg-[#c5a48e] text-white text-[13px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 rounded-[2px]"
+                  >
+                    STARTED NOW
+                  </button>
+                </div>
               </div>
             ))}
           </div>
