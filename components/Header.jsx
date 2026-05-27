@@ -56,16 +56,18 @@ const Header = () => {
                   </button>
                   
                   {activeDropdown === l.label && (
-                    <div className="absolute top-full left-0 mt-3 min-w-[200px] bg-[#1e2235] rounded-md shadow-2xl py-3 flex flex-col animate-[fadeIn_.2s_ease]">
-                      {l.subLinks.map(sub => (
-                        <Link 
-                          key={sub.label} 
-                          href={sub.to}
-                          className="px-5 py-2.5 text-[14px] text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 pt-3 min-w-[200px]">
+                      <div className="bg-[#1e2235] rounded-md shadow-2xl py-3 flex flex-col animate-[fadeIn_.2s_ease]">
+                        {l.subLinks.map(sub => (
+                          <Link 
+                            key={sub.label} 
+                            href={sub.to}
+                            className="px-5 py-2.5 text-[14px] text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
