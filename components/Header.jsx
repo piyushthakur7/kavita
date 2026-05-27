@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Radio } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import { navLinks } from '@/lib/mock';
 import { useModal } from '@/context/ModalContext';
@@ -10,6 +10,7 @@ import { useModal } from '@/context/ModalContext';
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const pathname = usePathname();
   const isHome = pathname === '/';
   const { openModal } = useModal();
@@ -20,102 +21,134 @@ const Header = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { setMobileOpen(false); }, [pathname]);
+  useEffect(() => { setMobileOpen(false); setActiveDropdown(null); }, [pathname]);
 
-  // Premium Dark Audio Console Strip Background
   const headerBg = scrolled || !isHome
-    ? 'bg-[#0d0b0f]/95 border-b border-[#c5a880]/15 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
+    ? 'bg-white border-b border-gray-100 shadow-sm'
     : 'bg-transparent border-b border-transparent';
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}>
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
         
-        {/* Sleek metallic badge logo */}
         <Logo light={scrolled || !isHome || mobileOpen} />
         
-        {/* Navigation Console */}
         <nav className="hidden lg:flex items-center gap-9 select-none">
           {navLinks.map((l) => {
-            const isActive = pathname === l.to;
+            const isActive = pathname === l.to || (l.subLinks && l.subLinks.some(s => pathname === s.to));
+            
+            if (l.subLinks) {
+              return (
+                <div 
+                  key={l.label} 
+                  className="relative group"
+                  onMouseEnter={() => setActiveDropdown(l.label)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <button
+                    className={`flex items-center gap-1 text-[15px] font-semibold transition-all duration-300 py-1 ${
+                      isActive 
+                        ? 'text-kavita-tan' 
+                        : 'text-gray-800 hover:text-kavita-darkblue'
+                    }`}
+                  >
+                    {l.label}
+                    <svg className="w-4 h-4 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  
+                  {activeDropdown === l.label && (
+                    <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-xl py-2 flex flex-col animate-[fadeIn_.2s_ease]">
+                      {l.subLinks.map(sub => (
+                        <Link 
+                          key={sub.label} 
+                          href={sub.to}
+                          className="px-4 py-2 text-sm text-gray-700 hover:text-kavita-tan hover:bg-gray-50 transition-colors"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={l.label}
                 href={l.to}
-                className={`relative text-[14px] font-semibold tracking-wider transition-all duration-300 uppercase py-1 ${
+                className={`relative text-[15px] font-semibold transition-all duration-300 py-1 ${
                   isActive 
-                    ? 'text-[#c5a880]' 
-                    : 'text-[#e5dcd3]/70 hover:text-[#e5dcd3]'
+                    ? 'text-kavita-tan' 
+                    : 'text-gray-800 hover:text-kavita-darkblue'
                 }`}
               >
-                <span className="flex items-center gap-1.5">
-                  {/* Micro amber LED indicator on active tab */}
-                  {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ffaa00] shadow-[0_0_6px_#ffaa00]" />
-                  )}
-                  {l.label}
-                </span>
+                {l.label}
               </Link>
             );
           })}
         </nav>
         
-        {/* Controls Panel */}
         <div className="hidden lg:flex items-center gap-5">
-          {/* Signal Indicator */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded bg-[#18151c] border border-[#c5a880]/10">
-            <Radio size={13} className="text-[#ffaa00] animate-pulse" />
-            <span className="text-[10px] font-mono tracking-widest text-[#e5dcd3]/60 uppercase">SIGNAL: ON</span>
-          </div>
-
-          {/* Tactile gold button */}
           <button 
             onClick={openModal} 
-            className="px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase text-[#0d0b0f] bg-gradient-to-r from-[#e5ca9c] to-[#c5a880] border border-[#d6b789] hover:from-[#c5a880] hover:to-[#a78b63] shadow-[0_4px_15px_rgba(197,168,128,0.25)] active:translate-y-0.5 active:shadow-[0_2px_5px_rgba(197,168,128,0.15)] transition-all"
+            className="btn-primary"
           >
             Book Appointment
           </button>
         </div>
 
-        {/* Mobile menu trigger */}
         <button
-          className="lg:hidden p-2 text-[#e5dcd3]/90 hover:text-[#c5a880]"
+          className="lg:hidden p-2 text-gray-800 hover:text-kavita-tan"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Menu"
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Drawer (Styled as high-fidelity console foldout) */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#0d0b0f] border-t border-[#c5a880]/15 px-6 py-6 space-y-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+        <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-6 space-y-4 shadow-lg">
           {navLinks.map((l) => {
             const isActive = pathname === l.to;
+            
+            if (l.subLinks) {
+              return (
+                <div key={l.label} className="border-b border-gray-100 pb-2">
+                  <div className="text-[15px] font-semibold text-gray-900 py-2">{l.label}</div>
+                  <div className="pl-4 flex flex-col gap-2 mt-1">
+                    {l.subLinks.map(sub => (
+                      <Link 
+                        key={sub.label} 
+                        href={sub.to}
+                        className={`text-sm py-1 transition-colors ${
+                          pathname === sub.to ? 'text-kavita-tan' : 'text-gray-600 hover:text-kavita-darkblue'
+                        }`}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={l.label}
                 href={l.to}
-                className={`flex items-center gap-3 text-[14px] font-bold tracking-widest uppercase py-2 transition-colors duration-300 ${
-                  isActive ? 'text-[#c5a880]' : 'text-[#e5dcd3]/70 hover:text-[#e5dcd3]'
+                className={`block text-[15px] font-semibold py-2 transition-colors duration-300 ${
+                  isActive ? 'text-kavita-tan' : 'text-gray-800 hover:text-kavita-darkblue'
                 }`}
               >
-                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#ffaa00] shadow-[0_0_6px_#ffaa00]" />}
                 {l.label}
               </Link>
             );
           })}
-          <div className="pt-4 border-t border-white/5 space-y-4">
-            <div className="flex items-center justify-between text-[10px] font-mono tracking-widest text-[#e5dcd3]/40">
-              <span>FREQUENCY: CALM</span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-ping" />
-                STATUS: ACTIVE
-              </span>
-            </div>
+          <div className="pt-4 border-t border-gray-100">
             <button
               onClick={() => { setMobileOpen(false); openModal(); }}
-              className="w-full justify-center px-5 py-3 rounded-full text-xs font-bold tracking-widest uppercase text-[#0d0b0f] bg-gradient-to-r from-[#e5ca9c] to-[#c5a880] border border-[#d6b789] hover:from-[#c5a880] hover:to-[#a78b63]"
+              className="w-full justify-center btn-primary"
             >
               Book Appointment
             </button>

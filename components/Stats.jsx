@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
-import { Award, Users, Heart, CheckCircle2, Radio } from 'lucide-react';
+import { Award, Users, Heart, CheckCircle2 } from 'lucide-react';
 import { stats } from '@/lib/mock';
 
 const icons = [Award, Users, Heart, CheckCircle2];
@@ -18,13 +18,6 @@ const useInView = (ref) => {
     return () => o.disconnect();
   }, [ref]);
   return seen;
-};
-
-// LED segments helper: returns the color class based on height (0 = top/red, 9 = bottom/green)
-const getLedColor = (idx) => {
-  if (idx < 2) return 'active-red';     // Top 2 segments: Red (Clipping)
-  if (idx < 5) return 'active-amber';   // Middle 3 segments: Amber
-  return 'active-green';                // Bottom 5 segments: Green
 };
 
 const StatsCard = ({ stat, index }) => {
@@ -46,86 +39,32 @@ const StatsCard = ({ stat, index }) => {
     requestAnimationFrame(step);
   }, [inView, stat.value]);
 
-  // Proportional active segments (max 10)
-  // Happy Clients (95%) reaches 10. Others reach proportional maximums
-  const maxActiveSegments = index === 2 || index === 3 ? 10 : index === 1 ? 8 : 6;
-  const activeSegmentsCount = inView 
-    ? Math.min(10, Math.ceil((n / stat.value) * maxActiveSegments))
-    : 0;
-
   return (
     <div 
       ref={ref} 
-      className="bg-[#0d0b0f] border border-[#c5a880]/15 rounded-3xl p-6 shadow-[0_15px_30px_rgba(0,0,0,0.6)] flex items-center justify-between group transition-all duration-300 hover:border-[#c5a880]/40 select-none"
+      className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm flex flex-col items-center text-center group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
     >
-      {/* Stat Text Details */}
-      <div className="flex-1 pr-4">
-        <div className="flex items-center gap-2 text-[#c5a880]/60 mb-2">
-          <Icon size={18} strokeWidth={1.5} className="group-hover:text-[#ffaa00] transition-colors" />
-          <span className="text-[8px] font-mono tracking-widest uppercase">CHANNEL 0{index + 1}</span>
-        </div>
-        
-        {/* Glowing Counter */}
-        <div className="font-serif-display text-[44px] sm:text-[52px] font-extrabold leading-none text-[#e5dcd3] drop-shadow-[0_2px_10px_rgba(255,255,255,0.05)]">
-          {n}
-          <span className="text-[#c5a880] text-2xl font-light ml-0.5">{stat.suffix}</span>
-        </div>
-        
-        <p className="mt-3.5 text-[10px] uppercase tracking-[0.25em] text-[#e5dcd3]/50 leading-relaxed">
-          {stat.label}
-        </p>
+      <div className="w-14 h-14 rounded-full bg-[#f5f4ef] flex items-center justify-center mb-5 group-hover:bg-kavita-tan transition-colors duration-300">
+        <Icon size={24} strokeWidth={1.5} className="text-kavita-tan group-hover:text-white transition-colors duration-300" />
       </div>
-
-      {/* 10-Segment Vertical LED VU Meter (Equalizer style) */}
-      <div className="flex flex-col gap-1 w-5 bg-[#080709] border border-white/5 rounded-lg p-1 shadow-inner relative justify-between h-32 items-center">
-        {/* Active connection wire dot */}
-        <div className="absolute -top-1 w-1 h-1 rounded-full bg-[#c5a880]/30" />
-        
-        {/* Render 10 vertical LED segments from Top (Red) to Bottom (Green) */}
-        {Array.from({ length: 10 }).map((_, segmentIdx) => {
-          // Invert index so 0 is top (red) and 9 is bottom (green)
-          const ledIndexFromBottom = 9 - segmentIdx;
-          const isActive = ledIndexFromBottom < activeSegmentsCount;
-          const activeColorClass = getLedColor(segmentIdx);
-
-          return (
-            <div
-              key={segmentIdx}
-              className={`w-3.5 h-1.5 rounded-sm transition-all duration-150 ${
-                isActive 
-                  ? activeColorClass + ' opacity-100'
-                  : 'bg-stone-900 border border-black opacity-30'
-              }`}
-            />
-          );
-        })}
-
-        {/* Active connection wire dot */}
-        <div className="absolute -bottom-1 w-1 h-1 rounded-full bg-[#c5a880]/30" />
+      
+      {/* Counter */}
+      <div className="font-serif-display text-[44px] sm:text-[52px] font-bold leading-none text-gray-900">
+        {n}
+        <span className="text-kavita-tan text-2xl font-light ml-0.5">{stat.suffix}</span>
       </div>
-
+      
+      <p className="mt-3 font-medium text-[13px] uppercase tracking-wider text-gray-500">
+        {stat.label}
+      </p>
     </div>
   );
 };
 
 const Stats = () => {
   return (
-    <section className="py-20 bg-speaker-mesh border-b border-[#c5a880]/15 relative overflow-hidden select-none">
-      {/* Decorative center grid soundwave */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(197,168,128,0.03)_1px,transparent_0)] bg-[size:16px_16px] pointer-events-none" />
-      
+    <section className="py-20 bg-[#fcfbf9] border-t border-gray-200 relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        
-        {/* Console Header */}
-        <div className="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
-          <div className="flex items-center gap-2 text-white/55 font-mono text-[9px] tracking-widest uppercase">
-            <Radio size={12} className="text-[#ffaa00] animate-pulse" />
-            <span>SOUND LEVEL EQUALIZER DECK // METRIC INDICATORS</span>
-          </div>
-          <span className="text-[8px] font-mono text-white/20">DB RESIDENCE: AUTO</span>
-        </div>
-
-        {/* Level board grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((s, i) => (
             <StatsCard key={i} stat={s} index={i} />

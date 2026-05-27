@@ -1,10 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Eye, ThumbsUp, MessageSquare } from 'lucide-react';
+import { ArrowRight, Eye, ThumbsUp } from 'lucide-react';
 import { blogPosts } from '@/lib/mock';
 
 const Blog = ({ limit, blogs }) => {
-  // Helper to format date strings cleanly
   const formatDate = (dateVal) => {
     try {
       return new Date(dateVal).toLocaleDateString('en-US', {
@@ -17,27 +16,26 @@ const Blog = ({ limit, blogs }) => {
     }
   };
 
-  // Resolve display items: use DB blogs if provided, otherwise fallback to mock posts
   const rawItems = blogs && blogs.length > 0 ? blogs : blogPosts;
   const items = limit ? rawItems.slice(0, limit) : rawItems;
 
   return (
-    <section id="blog" className="py-24 lg:py-32 bg-white select-none">
+    <section id="blog" className="py-24 lg:py-32 bg-white select-none border-t border-gray-200">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div>
-            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">
+            <p className="uppercase tracking-[0.2em] text-[12px] font-semibold text-kavita-tan mb-3">
               What’s Going On In Our Blog?
             </p>
-            <h2 className="font-serif-display text-[44px] sm:text-[56px] lg:text-[68px] leading-tight text-[#1c1a1f]">
+            <h2 className="font-serif-display text-[44px] sm:text-[56px] lg:text-[68px] leading-tight text-gray-900 font-bold">
               Resources
             </h2>
-            <p className="mt-5 max-w-xl text-[15.5px] text-[#4b4753]">
+            <p className="mt-5 max-w-xl text-[16px] text-gray-600">
               Contact Dr. Kavita Kabira Wellness Clinic for more details! It is always good to have
               someone guide you along the way.
             </p>
           </div>
-          <Link href="/blog" className="btn-outline-dark self-start lg:self-end">View all posts</Link>
+          <Link href="/blog" className="btn-primary self-start lg:self-end">View all posts</Link>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
@@ -47,24 +45,24 @@ const Blog = ({ limit, blogs }) => {
             const displayDate = p.createdAt ? formatDate(p.createdAt) : p.date;
 
             return (
-              <article key={p.id} className="svc-card group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                <Link href={targetLink} className="block h-60 overflow-hidden">
+              <article key={p.id} className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-all duration-300">
+                <Link href={targetLink} className="block h-60 overflow-hidden relative">
                   <img src={coverImage} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </Link>
                 <div className="p-7">
-                  <span className="inline-block text-[10.5px] uppercase tracking-[0.25em] font-semibold text-fuchsia-700 bg-fuchsia-50 px-3 py-1 rounded-full mb-4">
+                  <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-kavita-tan bg-kavita-tan/10 px-3 py-1 rounded-full mb-4">
                     {p.category}
                   </span>
-                  <h3 className="font-serif-display text-[22px] leading-snug text-[#1c1a1f] mb-3">
-                    <Link href={targetLink} className="hover:text-fuchsia-700 transition-colors">{p.title}</Link>
+                  <h3 className="font-serif-display text-[22px] font-bold leading-snug text-gray-900 mb-3">
+                    <Link href={targetLink} className="hover:text-kavita-tan transition-colors">{p.title}</Link>
                   </h3>
-                  <p className="text-[14px] text-[#4b4753] leading-relaxed mb-5">{p.excerpt}</p>
-                  <div className="flex items-center gap-4 text-[11.5px] text-[#9b97a4] mb-5 flex-wrap">
+                  <p className="text-[14px] text-gray-600 leading-relaxed mb-5">{p.excerpt}</p>
+                  <div className="flex items-center gap-4 text-[12px] text-gray-400 mb-5 flex-wrap">
                     <span>Published: {displayDate}</span>
-                    <span className="flex items-center gap-1"><Eye size={13} /> {p.views}</span>
-                    <span className="flex items-center gap-1"><ThumbsUp size={13} /> {p.likes}</span>
+                    <span className="flex items-center gap-1"><Eye size={14} /> {p.views}</span>
+                    <span className="flex items-center gap-1"><ThumbsUp size={14} /> {p.likes}</span>
                   </div>
-                  <Link href={targetLink} className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#1c1a1f] group/btn">
+                  <Link href={targetLink} className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.1em] text-gray-900 hover:text-kavita-tan transition-colors group/btn">
                     Read more
                     <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                   </Link>

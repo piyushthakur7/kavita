@@ -15,44 +15,44 @@ const Testimonials = () => {
   const current = testimonials[idx];
 
   return (
-    <section className="py-24 lg:py-32 section-darker relative">
+    <section className="py-24 lg:py-32 bg-[#f5f4ef] border-y border-gray-200 relative">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        <h2 className="font-serif-display text-center text-[44px] sm:text-[56px] lg:text-[68px] text-white leading-tight">
-          Client <span className="italic font-light text-white/80">Reviews</span>
+        <h2 className="font-serif-display text-center text-[44px] sm:text-[56px] lg:text-[68px] text-gray-900 leading-tight font-bold">
+          Client <span className="italic font-normal text-kavita-tan">Reviews</span>
         </h2>
 
         <div className="mt-14 relative max-w-5xl mx-auto">
           <Quote
-            className="absolute -left-2 -top-4 text-white/15"
+            className="absolute -left-2 -top-4 text-kavita-tan/20"
             size={70}
             strokeWidth={1}
           />
           <div className="flex items-start gap-4 relative">
             <button
               onClick={() => setIdx((i) => (i - 1 + total) % total)}
-              className="hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 items-center justify-center hover:bg-white/10 transition"
+              className="hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-gray-300 items-center justify-center hover:bg-white hover:border-kavita-tan transition shadow-sm text-gray-500 hover:text-kavita-tan"
               aria-label="Previous"
             >
-              <ArrowLeft size={18} className="text-white" />
+              <ArrowLeft size={18} />
             </button>
             <p
               key={current.id}
-              className="text-center mx-auto text-[19px] lg:text-[22px] leading-[1.6] font-serif-display italic text-white/85 max-w-4xl animate-[fadeIn_.6s_ease]"
+              className="text-center mx-auto text-[19px] lg:text-[22px] leading-[1.6] font-serif-display italic text-gray-700 max-w-4xl animate-[fadeIn_.6s_ease]"
             >
               “{current.quote}”
             </p>
             <button
               onClick={() => setIdx((i) => (i + 1) % total)}
-              className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 items-center justify-center hover:bg-white/10 transition"
+              className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-gray-300 items-center justify-center hover:bg-white hover:border-kavita-tan transition shadow-sm text-gray-500 hover:text-kavita-tan"
               aria-label="Next"
             >
-              <ArrowRight size={18} className="text-white" />
+              <ArrowRight size={18} />
             </button>
           </div>
 
           <div className="mt-10 text-center">
-            <h4 className="font-serif-display text-2xl text-white">{current.name}</h4>
-            <p className="text-[12px] uppercase tracking-[0.28em] text-white/55 mt-1">
+            <h4 className="font-serif-display text-2xl font-bold text-gray-900">{current.name}</h4>
+            <p className="text-[12px] uppercase tracking-[0.28em] font-semibold text-kavita-tan mt-1">
               {current.role}
             </p>
           </div>
@@ -63,7 +63,7 @@ const Testimonials = () => {
                 key={t.id}
                 onClick={() => setIdx(i)}
                 className={`w-16 h-16 rounded-full overflow-hidden border-2 transition ${
-                  i === idx ? 'border-white scale-110' : 'border-white/20 opacity-60 hover:opacity-100'
+                  i === idx ? 'border-kavita-tan scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
                 }`}
               >
                 <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
