@@ -4,6 +4,7 @@ import FeatureCards from '@/components/FeatureCards';
 import About from '@/components/About';
 import Services from '@/components/Services';
 import Testimonials from '@/components/Testimonials';
+import VideoTestimonials from '@/components/VideoTestimonials';
 import FAQ from '@/components/FAQ';
 import Stats from '@/components/Stats';
 import Blog from '@/components/Blog';
@@ -21,6 +22,7 @@ export default function Home() {
       <About />
       <Services />
       <Testimonials />
+      <VideoTestimonials />
       <FAQ />
       <Stats />
       <Blog limit={3} />
