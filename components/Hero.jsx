@@ -18,21 +18,28 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-20 max-w-[1400px] mx-auto px-6 lg:px-10 pt-40 pb-32 min-h-screen flex items-center">
-        <div className="max-w-[55%]">
+        <div>
           <h1 className="font-serif-display leading-[1.05] text-[56px] sm:text-[72px] lg:text-[80px] xl:text-[90px] tracking-tight animate-slide-up-fade">
-            Transform Your
+            You've been carrying
             <br />
-            <span className="font-bold">Mental Health.</span>
+            <span className="font-bold">it long enough.</span>
           </h1>
+          
+          <p className="mt-6 text-[18px] sm:text-[20px] text-gray-700 max-w-lg leading-relaxed animate-slide-up-fade animation-delay-200">
+            Inner child healing. Nervous system work. Therapy built for the Human Heart.
+          </p>
 
           {/* Actions panel */}
-          <div className="mt-12 flex flex-wrap items-center gap-5 animate-slide-up-fade animation-delay-200">
+          <div className="mt-10 flex flex-wrap items-center gap-5 animate-slide-up-fade animation-delay-200">
             <button 
               onClick={openModal}
               className="px-8 py-3.5 bg-[#1f1f1f] text-white text-[15px] font-medium rounded-[30px] hover:bg-black transition-all hover:scale-105 duration-300"
             >
-              Get Free Consultation
+              Begin Your Healing &rarr;
             </button>
+            <a href="https://wa.me/919971880693" target="_blank" rel="noreferrer" className="px-8 py-3.5 bg-white text-gray-900 border border-gray-300 text-[15px] font-medium rounded-[30px] hover:bg-gray-50 transition-all hover:scale-105 duration-300">
+              Book a Free Clarity Call
+            </a>
           </div>
         </div>
       </div>

@@ -8,14 +8,13 @@ const Services = () => {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">
-            WE PROVIDE WHAT
+            WHAT WE OFFER
           </p>
           <h2 className="font-serif-display text-[42px] sm:text-[54px] lg:text-[64px] leading-tight text-[#1c1a1f]">
-            Psychological Services
+            Specialised Services
           </h2>
           <p className="mt-5 text-[15.5px] leading-relaxed text-[#4b4753]">
-            Our goal is to provide customers with the best service, for us to help customers
-            overcome their barriers is a noble task
+            Each service is tailored to the person in front of me &mdash; not a template, not a checklist. This is healing that respects your story.
           </p>
         </div>
 

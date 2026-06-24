@@ -30,31 +30,31 @@ const About = () => {
           </p>
 
           <h2 className="font-serif-display text-[38px] sm:text-[48px] leading-[1.1] text-gray-900 mb-6">
-            The Leading Psychology &amp;
+            A Different Kind of
             <br />
-            Wellness Clinic
+            Healing Clinic
           </h2>
 
           {/* Dark divider */}
           <div className="w-full max-w-[400px] h-[3px] bg-[#1e2235] mb-8"></div>
 
           <p className="text-[15px] leading-[1.8] text-gray-600 mb-6">
-            In today&apos;s rapidly evolving society, many people face complex mental health challenges that can be overwhelming. Recognizing that mental well-being is a significant concern, it&apos;s crucial to seek support from professionals like the <b className="text-gray-900">Best Psychologist in Gurgaon</b> to navigate these issues.
+            In India, we are experts at surviving. We push through grief, swallow our needs, and call it strength. But survival is not the same as healing.
           </p>
 
-          <p className="text-[15px] leading-[1.8] text-gray-600 mb-4">
-            Acknowledging this essential need, we have established a dedicated psychological practice. As the <b className="text-gray-900">Top Psychotherapist in Gurgaon and Delhi</b>, we offer comprehensive counseling and therapy services to support your mental health. Committed to accessibility, we strive to be an <b className="text-gray-900">Affordable Psychologist</b> for everyone seeking guidance.
+          <p className="text-[15px] leading-[1.8] text-gray-600 mb-6">
+            At Kavita Kabira Wellness Clinic, I work with what most therapy skips &mdash; the inner child, the nervous system, the story your body is still holding. My approach is not borrowed wholesale from the West. It is informed by global clinical frameworks and rooted in the Indian emotional landscape &mdash; the weight of family expectations, the silence around desire, the loneliness inside a full house.
           </p>
 
-          <p className="text-[14px] text-gray-400 italic mb-8">
-            Call us 24/7. We can answer for all your questions.
+          <p className="text-[14px] text-gray-600 italic mb-8 font-medium">
+            If you have ever felt like something is quietly wrong even when everything looks fine &mdash; you are exactly who I work with.
           </p>
 
           <Link
             href="/about"
             className="inline-block px-8 py-3.5 bg-[#1f1f1f] text-white text-[14px] font-medium rounded-[4px] hover:bg-black transition-colors"
           >
-            Read More
+            Read More &rarr;
           </Link>
         </div>
 
