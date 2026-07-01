@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 import { comparePasswords } from '@/lib/password';
 import { signJWT } from '@/lib/auth';
 
@@ -12,9 +12,7 @@ export async function POST(request) {
     }
 
     // Locate the user in the database
-    const user = await prisma.user.findUnique({
-      where: { email }
-    });
+    const { data: user } = await supabase.from('User').select('*').eq('email', email).single();
 
     if (!user) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });

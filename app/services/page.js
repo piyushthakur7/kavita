@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Check } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import ContactCTA from '@/components/Contact';
-import { psychServices, pricingPlans } from '@/lib/mock';
+import { psychServices } from '@/lib/mock';
 import { useModal } from '@/context/ModalContext';
 
 export default function ServicesPage() {
@@ -88,73 +88,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-center max-w-3xl mx-auto mb-6">
-            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">
-              OUR PRICES
-            </p>
-            <h2 className="font-serif-display text-[42px] sm:text-[54px] lg:text-[64px] leading-tight text-[#1c1a1f]">
-              Pricing <span className="italic font-light">Table</span>
-            </h2>
-            <p className="mt-5 text-[15.5px] leading-relaxed text-[#4b4753]">
-              We have a reasonable price to assure you, we work according to the principle that the
-              customer is the first, not the money
-            </p>
-            {/* Divider line */}
-            <div className="w-14 h-[3px] bg-black mx-auto mt-6 mb-12"></div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mt-12">
-            {pricingPlans.map((p) => (
-              <div 
-                key={p.id} 
-                className="group relative bg-white border border-gray-100 shadow-[0_10px_35px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] rounded-[32px] overflow-hidden transition-all duration-500 flex flex-col hover:-translate-y-1 transform"
-              >
-                {/* Header */}
-                <div className="bg-[#090909] text-white p-8 text-center flex flex-col justify-center items-center relative">
-                  {p.featured && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 text-[10px] uppercase tracking-[0.2em] font-bold bg-[#c5a48e] text-white rounded-full">
-                      Most Popular
-                    </span>
-                  )}
-                  <h3 className="font-serif-display text-[26px] uppercase tracking-wider font-semibold">
-                    {p.name}
-                  </h3>
-                  <p className="text-[12.5px] mt-1 text-white/60 font-sans italic font-light">
-                    {p.subtitle}
-                  </p>
-                </div>
-
-                {/* Body */}
-                <div className="p-8 flex-1 flex flex-col items-center">
-                  <div className="my-6 flex items-baseline justify-center text-[#1c1a1f]">
-                    <span className="text-[20px] font-sans font-medium text-gray-400 self-start mt-2 mr-0.5">$</span>
-                    <span className="font-serif-display text-[64px] font-light leading-none">{p.price}</span>
-                  </div>
-
-                  <ul className="w-full border-t border-gray-100 pt-6 space-y-4 flex-1">
-                    {p.features.map((f, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[14.5px] text-[#4b4753]">
-                        <Check size={18} className="text-[#c5a48e] mt-0.5 shrink-0" />
-                        <span className="leading-normal">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button
-                    onClick={openModal}
-                    className="w-full mt-8 py-3.5 bg-[#060303] hover:bg-[#c5a48e] text-white text-[13px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 rounded-[2px]"
-                  >
-                    STARTED NOW
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <ContactCTA />
     </>

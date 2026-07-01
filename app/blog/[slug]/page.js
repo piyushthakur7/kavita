@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Calendar, Eye, ThumbsUp, ArrowLeft, User, MessageSquare } from 'lucide-react';
-import prisma from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 import PageBanner from '@/components/PageBanner';
@@ -14,9 +14,7 @@ import { blogPosts } from '@/lib/mock';
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   
-  let post = await prisma.blog.findUnique({
-    where: { slug },
-  });
+  let { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).single();
 
   if (!post) {
     // Try mock posts
@@ -47,10 +45,8 @@ export async function generateMetadata({ params }) {
 export default async function PublicBlogDetailPage({ params }) {
   const { slug } = await params;
 
-  // Retrieve post from SQLite database
-  let post = await prisma.blog.findUnique({
-    where: { slug },
-  });
+  // Retrieve post from database
+  let { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).single();
 
   let isMock = false;
   let others = [];
@@ -79,23 +75,19 @@ export default async function PublicBlogDetailPage({ params }) {
       notFound();
     }
     // Fetch other recent published posts for sidebar recommendations
-    const dbOthers = await prisma.blog.findMany({
-      where: {
-        published: true,
-        NOT: { id: post.id },
-      },
-      take: 3,
-      orderBy: { createdAt: 'desc' },
-    });
+    const { data: dbOthers } = await supabase
+      .from('Blog')
+      .select('*')
+      .eq('published', true)
+      .neq('id', post.id)
+      .order('createdAt', { ascending: false })
+      .limit(3);
     
-    others = dbOthers;
+    others = dbOthers || [];
 
-    // Increment view counter dynamically in background
+    // Increment view counter dynamically in background (using raw rpc if available, but for now just standard update)
     try {
-      await prisma.blog.update({
-        where: { id: post.id },
-        data: { views: { increment: 1 } },
-      });
+      await supabase.from('Blog').update({ views: post.views + 1 }).eq('id', post.id);
     } catch (err) {
       console.error("Failed to increment views:", err);
     }

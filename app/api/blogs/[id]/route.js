@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 import { verifyJWT } from '@/lib/auth';
 
 // Helper to generate slug for updates
@@ -21,15 +21,12 @@ export async function GET(request, { params }) {
     const { id } = await params;
 
     // Search by ID first
-    let blog = await prisma.blog.findUnique({
-      where: { id },
-    });
+    let { data: blog, error } = await supabase.from('Blog').select('*').eq('id', id).single();
 
-    // Fallback to search by Slug if not found by ID
+    // Fallback to search by Slug if not found by ID or an error occurs (like uuid parse error)
     if (!blog) {
-      blog = await prisma.blog.findUnique({
-        where: { slug: id },
-      });
+      const { data: slugBlog } = await supabase.from('Blog').select('*').eq('slug', id).single();
+      blog = slugBlog;
     }
 
     if (!blog) {
@@ -57,9 +54,7 @@ export async function PUT(request, { params }) {
     const body = await request.json();
     const { title, excerpt, content, coverImage, category, published } = body;
 
-    const existing = await prisma.blog.findUnique({
-      where: { id },
-    });
+    const { data: existing } = await supabase.from('Blog').select('id, title').eq('id', id).single();
 
     if (!existing) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
@@ -71,9 +66,7 @@ export async function PUT(request, { params }) {
       // Re-generate slug if title changed and doesn't match
       if (title !== existing.title) {
         let newSlug = createSlug(title);
-        const slugCollision = await prisma.blog.findFirst({
-          where: { slug: newSlug, NOT: { id } }
-        });
+        const { data: slugCollision } = await supabase.from('Blog').select('id').eq('slug', newSlug).neq('id', id).single();
         if (slugCollision) {
           newSlug = `${newSlug}-${Math.floor(1000 + Math.random() * 9000)}`;
         }
@@ -86,10 +79,8 @@ export async function PUT(request, { params }) {
     if (category !== undefined) updateData.category = category;
     if (published !== undefined) updateData.published = published;
 
-    const updatedBlog = await prisma.blog.update({
-      where: { id },
-      data: updateData,
-    });
+    const { data: updatedBlog, error } = await supabase.from('Blog').update(updateData).eq('id', id).select().single();
+    if (error) throw error;
 
     return NextResponse.json({ success: true, blog: updatedBlog });
   } catch (err) {
@@ -110,17 +101,14 @@ export async function DELETE(request, { params }) {
 
     const { id } = await params;
 
-    const existing = await prisma.blog.findUnique({
-      where: { id },
-    });
+    const { data: existing } = await supabase.from('Blog').select('id').eq('id', id).single();
 
     if (!existing) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
     }
 
-    await prisma.blog.delete({
-      where: { id },
-    });
+    const { error } = await supabase.from('Blog').delete().eq('id', id);
+    if (error) throw error;
 
     return NextResponse.json({ success: true, message: 'Blog deleted successfully' });
   } catch (err) {

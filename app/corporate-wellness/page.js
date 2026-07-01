@@ -294,19 +294,19 @@ export default function CorporatePage() {
                 id: 'impulsivity',
                 title: 'Chronic Impulsivity',
                 desc: 'Being angry will make things worse, be calm in any situation to be more smart, be a smart.',
-                image: '/images/da58081b-92f8-4898-9f8c-3a6918e31b65.jpeg'
+                image: '/images/chronic_impulsivity_ai.png'
               },
               {
                 id: 'career',
                 title: 'Career Counseling',
                 desc: 'Career counseling is a type of advice-giving and support provided by career counselors to their clients, to help',
-                image: '/images/b9fe9b7b-3035-46d3-b424-b074abd73f40.jpeg'
+                image: '/images/career_counseling_ai.png'
               },
               {
                 id: 'young-adult',
                 title: 'Young Adult Intensive',
                 desc: 'Adolescents are the age when they are forming their thoughts, so it is difficult to understand themselves.',
-                image: '/images/b5cdd099-154b-42a7-a628-c7ab845b5fbe.jpeg'
+                image: '/images/young_adult_intensive_ai.png'
               }
             ].map((s) => (
               <article key={s.id} className="group bg-white rounded-[32px] overflow-hidden border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 flex flex-col hover:-translate-y-1 transform">

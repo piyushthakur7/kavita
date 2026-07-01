@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 import { verifyJWT } from '@/lib/auth';
 
 // Helper to generate a URL-safe slug from a title string
@@ -21,17 +21,13 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const publishedOnly = searchParams.get('publishedOnly') === 'true';
 
-    const where = {};
+    let query = supabase.from('Blog').select('*').order('createdAt', { ascending: false });
     if (publishedOnly) {
-      where.published = true;
+      query = query.eq('published', true);
     }
 
-    const blogs = await prisma.blog.findMany({
-      where,
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
+    const { data: blogs, error } = await query;
+    if (error) throw error;
 
     return NextResponse.json({ success: true, blogs });
   } catch (err) {
@@ -62,13 +58,13 @@ export async function POST(request) {
     let slug = createSlug(title);
     
     // Check if slug is unique, if not append random suffix
-    const existing = await prisma.blog.findUnique({ where: { slug } });
+    const { data: existing } = await supabase.from('Blog').select('slug').eq('slug', slug).single();
     if (existing) {
       slug = `${slug}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
-    const newBlog = await prisma.blog.create({
-      data: {
+    const { data: newBlog, error } = await supabase.from('Blog').insert([
+      {
         title,
         slug,
         excerpt,
@@ -76,8 +72,10 @@ export async function POST(request) {
         coverImage,
         category: category || 'General',
         published: published !== undefined ? published : true,
-      },
-    });
+      }
+    ]).select().single();
+    
+    if (error) throw error;
 
     return NextResponse.json({ success: true, blog: newBlog });
   } catch (err) {

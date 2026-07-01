@@ -3,20 +3,25 @@ import Blog from '@/components/Blog';
 import PageBanner from '@/components/PageBanner';
 import ContactCTA from '@/components/Contact';
 import { blogBanner } from '@/lib/mock';
-import prisma from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
 export default async function BlogPage() {
-  // Fetch published blogs from SQLite database in real-time
-  const blogs = await prisma.blog.findMany({
-    where: {
-      published: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
+  let blogs = [];
+  try {
+    // Fetch published blogs from Supabase
+    const { data, error } = await supabase
+      .from('Blog')
+      .select('*')
+      .eq('published', true)
+      .order('createdAt', { ascending: false });
+      
+    if (error) throw error;
+    if (data) blogs = data;
+  } catch (error) {
+    console.error("Failed to fetch blogs from database, falling back to mock data:", error.message);
+  }
 
   return (
     <>
