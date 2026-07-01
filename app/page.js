@@ -9,6 +9,8 @@ import FAQ from '@/components/FAQ';
 import Stats from '@/components/Stats';
 import Blog from '@/components/Blog';
 import ContactCTA from '@/components/Contact';
+import LaunchBanner from '@/components/LaunchBanner';
+import AcademyTeaser from '@/components/AcademyTeaser';
 
 export default function Home() {
   // We need to pass onBookClick if the component requires it.
@@ -20,12 +22,14 @@ export default function Home() {
       <Hero />
       <FeatureCards />
       <About />
+      <LaunchBanner />
       <Services />
       <Testimonials />
       <VideoTestimonials />
       <FAQ />
       <Stats />
       <Blog limit={3} />
+      <AcademyTeaser />
       <ContactCTA />
     </>
   );

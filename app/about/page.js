@@ -34,17 +34,21 @@ export default function AboutPage() {
               Renowned Psychologist, Mindset Coach &amp; Expert in Emotional Healing
             </p>
 
-            <h2 className="font-serif-display text-[28px] lg:text-[36px] leading-[1.3] text-gray-900 mb-8">
-              I am a psychologist and Mindset Coach with extensive experience in mental health therapy and emotional healing. I help individuals rebuild their lives, while also empowering corporations to enhance productivity and well-being.
+            <h2 className="font-serif-display text-[28px] lg:text-[36px] leading-[1.3] text-gray-900 mb-8 whitespace-pre-wrap">
+              {aboutInfo.intro}
             </h2>
 
+            {/* Credentials Strip */}
+            <div className="bg-[#f5f4ef] rounded-lg p-5 mb-8 border border-gray-200 shadow-sm">
+              <p className="text-[14px] lg:text-[15px] font-medium text-gray-800 text-center leading-relaxed">
+                NCAHP Registered | Ph.D. Social Psychology | M.A. Clinical Psychology | Trained Art & Psychodrama Therapist
+              </p>
+            </div>
+
             <div className="space-y-6 text-[15px] leading-[1.85] text-gray-600">
-              <p>
-                With over 20 years of experience as a psychologist, <b className="text-gray-900">Dr. Kavita Kabira</b> specializes in providing expert <b className="text-gray-900">mental health therapy</b> and <b className="text-gray-900">emotional healing</b>. She is here to support you through your psychological challenges.
-              </p>
-              <p>
-                In today&apos;s fast-paced world, individuals face various modern-day stressors and complex mental health concerns. Mental health issues, such as <b className="text-gray-900">inner child trauma</b>, anxiety, and emotional stress, have become significant yet often overlooked challenges in society. At <b className="text-gray-900">Kavita Kabira Wellness Clinic</b>, we address these concerns with a holistic approach, utilizing diverse techniques to tap into your natural healing potential. We help you restore balance, fostering mental resilience and emotional well-being.
-              </p>
+              {aboutInfo.paragraphs.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
             </div>
           </div>
         </div>
@@ -83,7 +87,7 @@ export default function AboutPage() {
             <div className="animate-[fadeIn_.3s_ease]">
               {/* Intro paragraph */}
               <p className="text-[15px] leading-[1.85] text-gray-600 mb-10 max-w-4xl">
-                Dr. Kavita Kabira, an <b className="text-gray-900">AAHP registered psychologist</b> with years of experience, is a leading expert in mental health therapy, emotional healing, and trauma recovery. As a sought-after <b className="text-gray-900">Mindset Coach</b> and <b className="text-gray-900">top psychologist in Gurgaon</b>, she blends modern psychology with holistic practices, focusing on inner child trauma, corporate wellness, and mindfulness for emotional resilience. Dr. Kavita helps individuals and organizations achieve mental clarity and emotional well-being, making her a recognized leader in her field.
+                Dr. Kavita Kabira is a leading expert in mental health therapy, emotional healing, and trauma recovery. Blending modern psychology with holistic practices, she focuses on inner child trauma, corporate wellness, and mindfulness for emotional resilience.
               </p>
 
               {/* Timeline */}

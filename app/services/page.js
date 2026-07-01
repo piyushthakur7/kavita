@@ -29,8 +29,7 @@ export default function ServicesPage() {
               Psychological <span className="italic font-light">Services</span>
             </h2>
             <p className="mt-5 text-[15.5px] leading-relaxed text-[#4b4753]">
-              Our goal is to provide customers with the best service, for us to help customers
-              overcome their barriers is a noble task
+              Each service is tailored to the person in front of me—not a template, not a checklist. This is healing that respects your story.
             </p>
           </div>
 
@@ -67,6 +66,63 @@ export default function ServicesPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-20 bg-[#f8f7fc] border-t border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <p className="uppercase tracking-[0.28em] text-[11px] font-semibold text-[#7e7a86] mb-3">
+              INVESTMENT
+            </p>
+            <h2 className="font-serif-display text-[38px] sm:text-[46px] leading-tight text-[#1c1a1f]">
+              Care <span className="italic font-light">Packages</span>
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Silver Package */}
+            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm flex flex-col text-center hover:-translate-y-1 transition-transform">
+              <h3 className="text-[20px] font-serif-display text-gray-900 mb-1">Silver</h3>
+              <p className="text-kavita-tan text-[28px] font-semibold mb-6">₹4,200</p>
+              <ul className="text-[14px] text-gray-600 space-y-3 mb-8 flex-1">
+                <li>One-on-one session</li>
+                <li>Initial Psychological Assessment</li>
+                <li>Basic Treatment Roadmap</li>
+                <li className="italic text-gray-500 mt-4">*Split-payment option available</li>
+              </ul>
+            </div>
+
+            {/* Golden Package */}
+            <div className="bg-gray-900 rounded-3xl p-8 border border-gray-800 shadow-xl flex flex-col text-center hover:-translate-y-1 transition-transform relative transform md:scale-105 z-10">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-kavita-tan text-white text-[10px] uppercase tracking-wider px-4 py-1 rounded-full font-bold">
+                Most Popular
+              </div>
+              <h3 className="text-[20px] font-serif-display text-white mb-1">Golden</h3>
+              <p className="text-kavita-tan text-[32px] font-semibold mb-6">₹4,500</p>
+              <ul className="text-[14px] text-gray-300 space-y-3 mb-8 flex-1">
+                <li>Comprehensive Consultation</li>
+                <li>Personalised Treatment Plan</li>
+                <li>Inner Child & Somatic Assessment</li>
+                <li>Follow-up Roadmap</li>
+                <li className="italic text-gray-400 mt-4">*Split-payment option available</li>
+              </ul>
+            </div>
+
+            {/* Diamond Package */}
+            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm flex flex-col text-center hover:-translate-y-1 transition-transform">
+              <h3 className="text-[20px] font-serif-display text-gray-900 mb-1">Diamond</h3>
+              <p className="text-kavita-tan text-[28px] font-semibold mb-6">₹4,800</p>
+              <ul className="text-[14px] text-gray-600 space-y-3 mb-8 flex-1">
+                <li>In-depth therapeutic session</li>
+                <li>Priority scheduling</li>
+                <li>Extensive emotional evaluation</li>
+                <li>Tailored trauma-informed interventions</li>
+                <li className="italic text-gray-500 mt-4">*Split-payment option available</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

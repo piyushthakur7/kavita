@@ -27,7 +27,7 @@ const TrustCounter = () => {
   useEffect(() => {
     if (!inView) return;
     let start = 0;
-    const end = 9650;
+    const end = 20;
     const duration = 2000;
     const startTs = performance.now();
     const step = (ts) => {
@@ -48,7 +48,7 @@ const TrustCounter = () => {
             <span className="text-[#c5a48e] font-light ml-1">+</span>
           </div>
           <p className="mt-3 text-[13px] uppercase tracking-[0.25em] font-semibold text-[#7e7a86] max-w-md mx-auto">
-            Customers and Corporates trust us
+            Corporates trust us
           </p>
         </div>
       </div>
@@ -60,19 +60,9 @@ const TrustCounter = () => {
 const TestimonialsSection = () => {
   const list = [
     {
-      name: 'Sohal Sharma',
-      role: 'Sohal Sharma',
-      quote: "Whether you're looking for counseling, stress management strategies, or simply a better understanding of mental health, Kavita Kabira offers a professional and supportive environment. Highly recommended for anyone seeking psychological wellness!"
-    },
-    {
-      name: 'Aditya Kohli',
-      role: 'Aditya Kohli',
-      quote: "I recently explored the Kavita Kabira website, and I must say it’s an excellent resource for mental health and well-being. The site is beautifully designed, easy to navigate, and offers valuable insights into psychological wellness."
-    },
-    {
-      name: 'Manvi Bedi',
-      role: 'Manvi Bedi',
-      quote: "From therapy services to mindfulness techniques, the website provides a holistic approach to mental health. The content is well-structured, informative, and reassuring, making it a comforting space for those seeking guidance. The inclusion of client testimonials and expert articles further enhances credibility."
+      name: 'Priya Desai',
+      role: 'HR Professional',
+      quote: "Our corporate wellness program was completely transformed by Dr. Kavita. She brought a compassionate yet practical approach to mental health that truly resonated with our entire team."
     }
   ];
 
@@ -235,26 +225,26 @@ export default function CorporatePage() {
                 WELCOME
               </p>
               <h2 className="font-serif-display text-[40px] sm:text-[50px] lg:text-[56px] leading-[1.1] text-[#1c1a1f] font-medium">
-                Welcome to Kavita Kabira <span className="italic font-light text-[#c5a48e]">Wellness Clinic</span>
+                Welcome to Kavita Kabira <span className="italic font-light text-[#c5a48e]">Corporate Wellness</span>
               </h2>
               <h3 className="text-[20px] font-medium text-[#4b4753] mt-5 leading-normal">
-                We enable organisations to flourish and employees to thrive
+                Because burnout is not a character flaw.
               </h3>
               <p className="mt-6 text-[15.5px] leading-relaxed text-[#5b5670]">
-                It is essential for organizations to prioritize the mental, emotional, and physical well-being of their employees. This not only leads to a more engaged and productive team but also reduces absenteeism, turnover, and workplace conflict.
+                It is a nervous system in crisis. For too long, corporate wellness has meant generic yoga classes and meditation apps that employees never open. Real wellness requires psychological safety.
               </p>
               <p className="mt-4 text-[15.5px] leading-relaxed text-[#5b5670]">
-                Dr. Kavita Kabira, the Best Wellness Coach for Executives and Top Psychologist in Gurgaon and Delhi, offers a variety of Corporate Wellness Workshops that can be conducted at your organization, tailored to meet your team’s specific needs.
+                We offer deep, somatic-informed interventions that give your leaders and teams the actual tools to regulate stress, navigate conflict, and return to their baseline.
               </p>
             </div>
 
             <div className="lg:col-span-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
-                  { title: 'Collaborative Art Therapy', icon: Palette, desc: 'Process emotions and foster teamwork through creative expression.' },
-                  { title: 'Vision Cards', icon: Eye, desc: 'Align personal goals with corporate vision through visual prompts.' },
-                  { title: 'Emotion Pockets', icon: Heart, desc: 'Build emotional resilience and support systems within departments.' },
-                  { title: 'Wellbeing and Laughter Workshops', icon: Laugh, desc: 'De-stress and strengthen social connection through shared joy.' }
+                  { title: 'Collaborative Art Therapy', icon: Palette, desc: 'Process workplace anxiety and foster authentic team cohesion through guided creative expression—no art skills required.' },
+                  { title: 'Nervous System Literacy', icon: Heart, desc: 'Teach your executives how to map their own stress responses and down-regulate their nervous systems in real time.' },
+                  { title: 'Trauma-Informed Leadership', icon: Eye, desc: 'Equip managers with the tools to lead teams without triggering defensiveness or compounding burnout.' },
+                  { title: 'Conflict & Boundary Mapping', icon: Laugh, desc: 'Move beyond "communication skills" and look at the psychological boundaries that make healthy conflict possible.' }
                 ].map((w, i) => {
                   const Icon = w.icon;
                   return (
@@ -352,10 +342,10 @@ export default function CorporatePage() {
 
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
               {[
-                { title: 'Affordable and High-Quality Care', desc: 'We offer competitive pricing, ensuring that top-notch mental health support is accessible to all while maintaining the highest standards of care.' },
-                { title: 'Years of Expertise', desc: 'Years of experience in psychological counseling, Dr. Kavita Kabira provides a wealth of knowledge and proven strategies to guide you through life’s challenges.' },
-                { title: 'Professional Team', desc: 'Our consulting team is experienced, they are trained to listen to you, always listen give you the best advice.' },
-                { title: 'Dedicated Support', desc: 'We are always here to support you, offering consistent, compassionate care whenever you need it. Feel free to reach out at any time, and we’ll be ready to assist' }
+                { title: 'Evidence-Based & Trauma-Informed', desc: 'No toxic positivity. We use clinical frameworks that respect the complexity of human psychology.' },
+                { title: 'Culturally Grounded', desc: 'We understand the specific pressures of the Indian corporate landscape—from hierarchy dynamics to family obligations.' },
+                { title: 'Somatic Focus', desc: 'We don’t just talk about stress. We teach the body how to process it using nervous-system regulation techniques.' },
+                { title: 'Sustainable Change', desc: 'We provide tools that outlast the workshop, empowering employees to manage their own emotional baseline long-term.' }
               ].map((f, i) => (
                 <div key={i} className="p-8 border border-gray-100 rounded-3xl bg-[#fafafa] hover:bg-white hover:shadow-[0_15px_40px_rgba(0,0,0,0.02)] transition-all duration-300">
                   <h4 className="font-serif-display text-[20px] text-[#1c1a1f] font-semibold mb-3">{f.title}</h4>

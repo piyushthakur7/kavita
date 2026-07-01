@@ -36,8 +36,11 @@ const Footer = () => {
         <div className="lg:col-span-1 flex flex-col justify-between">
           <div>
             <Logo />
-            <p className="mt-6 text-[14px] text-gray-600 leading-relaxed">
-              Professional psychotherapy, counseling, and wellness coaching in Gurgaon, Delhi, and online.
+            <p className="mt-6 text-[14px] text-gray-600 leading-relaxed font-bold">
+              Healing that respects your story.
+            </p>
+            <p className="mt-2 text-[14px] text-gray-600 leading-relaxed">
+              Clinical psychology, trauma recovery, and inner child healing in Gurgaon, Delhi, and online.
             </p>
           </div>
         </div>
@@ -85,6 +88,11 @@ const Footer = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/#academy" className="text-gray-600 hover:text-kavita-tan transition flex items-center gap-2">
+                <span>Kavita Kabira Wellness Academy</span>
+              </Link>
+            </li>
           </ul>
         </div>
 

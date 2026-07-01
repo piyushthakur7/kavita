@@ -25,6 +25,32 @@ export default function ProgramsLandingPage() {
   const programs = [
     {
       id: 1,
+      title: "Inner Child Healing Journey",
+      tagline: "Group Program — 8 Weeks",
+      icon: "🌟",
+      lucideIcon: Heart,
+      shortDesc: "An 8-week structured, intimate group program designed for women. We don't just talk about the past—we actively rewire the nervous system to feel safe in the present. Limited to 12 participants per cohort to ensure deep, individualized attention.",
+      color: "#0ea5e9",
+      themeColor: "sky",
+      textColor: "text-sky-600",
+      borderColor: "border-sky-500",
+      bgLight: "bg-sky-50/50",
+      buttonBg: "bg-sky-600 hover:bg-sky-700 focus:ring-sky-500",
+      badgeBg: "bg-sky-100 text-sky-800",
+      whatsappMsg: "Hi Dr. Kavita, I would like to know more about the Inner Child Healing Journey group program.",
+      details: {
+        ideal: "Women ready to deeply heal their past and break repetitive patterns. Limited to 12 participants per cohort for personalized attention.",
+        what: [
+          "Understanding childhood wounds and present triggers",
+          "Active nervous system rewiring to feel safe in the present",
+          "Somatic and emotional release of trapped trauma",
+          "Building healthy boundaries and self-compassion"
+        ],
+        format: "8-week intimate cohort. Exclusive for women. Safe, confidential, and guided by somatic experts.",
+      }
+    },
+    {
+      id: 2,
       title: "The Desire Reclaimed",
       tagline: "Couples Track — 8 Weeks",
       icon: "💕",
@@ -50,7 +76,7 @@ export default function ProgramsLandingPage() {
       }
     },
     {
-      id: 2,
+      id: 3,
       title: "The Healing Workplace",
       tagline: "Corporate Track — 12 Weeks",
       icon: "🌱",
@@ -76,7 +102,7 @@ export default function ProgramsLandingPage() {
       }
     },
     {
-      id: 3,
+      id: 4,
       title: "The Listening Self™",
       tagline: "Self-Paced Course — Lifetime Access",
       icon: "📚",
@@ -102,7 +128,7 @@ export default function ProgramsLandingPage() {
       }
     },
     {
-      id: 4,
+      id: 5,
       title: "The Rewiring Retreat",
       tagline: "Immersive — 4 Days / 3 Nights",
       icon: "🌸",
@@ -145,10 +171,22 @@ export default function ProgramsLandingPage() {
     {
       title: "Not Transactional",
       desc: "You're not a case. You're a person. I know your name. I remember what you said last session. I care about your healing."
+    },
+    {
+      title: "Built for Women, Held by a Woman",
+      desc: "Our most intensive group programs are exclusively for women. The shared lived experience of navigating Indian familial and cultural expectations creates an immediate, unspoken safety in the room."
     }
   ];
 
   const faqs = [
+    {
+      q: "I have tried therapy before and it didn't work. How is this different?",
+      a: "Traditional talk therapy often keeps you in your cognitive brain. We work somatically—which means we include the nervous system. We don't just analyze your patterns; we teach your body how to safely let them go."
+    },
+    {
+      q: "Do you offer payment plans for longer programs?",
+      a: "Yes. We believe healing should be accessible. For our 8-week programs, we offer a two-part split payment option."
+    },
     {
       q: "How do I know which program is right for me?",
       a: "Start with a 30-min clarity call with me. We'll talk about your situation. I'll recommend what makes sense. No pressure. Book via WhatsApp (8287045427) or the button below."
@@ -207,7 +245,7 @@ export default function ProgramsLandingPage() {
         behavior: "smooth"
       });
       
-      setExpandedProgram(id - 1);
+      setExpandedProgram(id);
     }
   };
 
@@ -347,13 +385,13 @@ export default function ProgramsLandingPage() {
           {/* Grid of Programs */}
           <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
             {programs.map((prog, idx) => {
-              const isExpanded = expandedProgram === idx;
+              const isExpanded = expandedProgram === prog.id;
               
               return (
                 <div
                   key={prog.id}
                   id={`program-${prog.id}`}
-                  onClick={() => setExpandedProgram(isExpanded ? null : idx)}
+                  onClick={() => setExpandedProgram(isExpanded ? null : prog.id)}
                   className={`bg-white rounded-xl border border-gray-200/80 transition-all duration-500 cursor-pointer overflow-hidden relative flex flex-col justify-between ${
                     isExpanded 
                       ? "shadow-2xl shadow-gray-200 translate-y-[-4px] ring-2 ring-opacity-20"
