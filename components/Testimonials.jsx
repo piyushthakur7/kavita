@@ -57,7 +57,7 @@ const Testimonials = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-center gap-5">
+          <div className="mt-10 flex justify-center gap-3 sm:gap-5 flex-wrap">
             {testimonials.map((t, i) => (
               <button
                 key={t.id}
