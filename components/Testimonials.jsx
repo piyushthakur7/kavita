@@ -52,22 +52,18 @@ const Testimonials = () => {
 
           <div className="mt-10 text-center">
             <h4 className="font-serif-display text-2xl font-bold text-gray-900">{current.name}</h4>
-            <p className="text-[12px] uppercase tracking-[0.28em] font-semibold text-kavita-tan mt-1">
-              {current.role}
-            </p>
           </div>
 
-          <div className="mt-10 flex justify-center gap-3 sm:gap-5 flex-wrap">
+          <div className="mt-10 flex justify-center gap-3">
             {testimonials.map((t, i) => (
               <button
                 key={t.id}
                 onClick={() => setIdx(i)}
-                className={`w-16 h-16 rounded-full overflow-hidden border-2 transition ${
-                  i === idx ? 'border-kavita-tan scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  i === idx ? 'bg-kavita-tan w-8' : 'bg-gray-300 hover:bg-gray-400'
                 }`}
-              >
-                <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
-              </button>
+                aria-label={`Go to slide ${i + 1}`}
+              />
             ))}
           </div>
         </div>

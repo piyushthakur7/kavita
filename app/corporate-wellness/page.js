@@ -89,7 +89,6 @@ const TestimonialsSection = () => {
           </p>
           <div className="mt-8">
             <h4 className="font-serif-display text-xl font-bold text-gray-900">{list[idx].name}</h4>
-            <p className="text-[12px] uppercase tracking-wider text-[#c5a48e] mt-1">{list[idx].role}</p>
           </div>
         </div>
 
