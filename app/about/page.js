@@ -22,10 +22,10 @@ export default function AboutPage() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 items-start">
           <div className="lg:col-span-5 relative">
             <div className="relative overflow-hidden h-[520px] lg:h-[600px]">
-              <img src={drFullImage} alt="Dr. Kavita Kabira" className="w-full h-full object-cover" />
+              <img src={drFullImage} alt="Dr. Kavita Kabira" className="w-full h-full object-contain" />
             </div>
             <div className="absolute -bottom-6 -right-4 w-40 h-40 rounded-2xl overflow-hidden ring-8 ring-white shadow-2xl hidden lg:block">
-              <img src={drAltImage} alt="Dr. Kavita" className="w-full h-full object-cover" />
+              <img src={drAltImage} alt="Dr. Kavita" className="w-full h-full object-contain" />
             </div>
           </div>
 

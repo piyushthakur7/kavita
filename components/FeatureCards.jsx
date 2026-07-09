@@ -39,7 +39,7 @@ const FeatureCards = () => {
                 <img 
                   src={c.image} 
                   alt={c.title} 
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-contain" 
                 />
               </div>
               

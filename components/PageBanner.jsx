@@ -7,7 +7,7 @@ const PageBanner = ({ title, subtitle, crumbs = [], image }) => {
   return (
     <section className="relative pt-40 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
       <div className="absolute inset-0">
-        <img src={image || pageBannerImage} alt="" className="w-full h-full object-cover" />
+        <img src={image || pageBannerImage} alt="" className="w-full h-full object-contain" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#efeefb]/85 via-[#e4e2f6]/90 to-[#d8d6ee]/95" />
       </div>
       <div className="absolute -top-4 left-8 w-32 h-32 dots-bg opacity-40 rounded-full" />

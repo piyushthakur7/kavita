@@ -143,7 +143,7 @@ export default async function PublicBlogDetailPage({ params }) {
           {/* Main article */}
           <article className="lg:col-span-2">
             <div className="rounded-3xl overflow-hidden mb-10 h-[460px] shadow-lg border border-gray-100">
-              <img src={coverImage} alt={post.title} className="w-full h-full object-cover" />
+              <img src={coverImage} alt={post.title} className="w-full h-full object-contain" />
             </div>
 
             <div className="flex items-center gap-5 text-[12px] text-[#7e7a86] flex-wrap mb-6 font-semibold">
@@ -188,7 +188,7 @@ export default async function PublicBlogDetailPage({ params }) {
                     <li key={o.id}>
                       <Link href={`/blog/${o.slug}`} className="flex gap-4 group">
                         <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 shadow border border-stone-200">
-                          <img src={o.coverImage} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                          <img src={o.coverImage} alt="" className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
                         </div>
                         <div>
                           <p className="text-[10.5px] uppercase tracking-[0.22em] text-fuchsia-700 font-semibold mb-1">{o.category}</p>

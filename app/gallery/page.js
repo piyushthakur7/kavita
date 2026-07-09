@@ -33,7 +33,7 @@ export default function GalleryPage() {
                 <img 
                   src={src} 
                   alt={`Gallery Image ${index + 1}`} 
-                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500" 
+                  className="w-full h-auto object-contain transform group-hover:scale-[1.02] transition-transform duration-500" 
                   loading="lazy"
                 />
               </div>

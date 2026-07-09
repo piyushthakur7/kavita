@@ -300,7 +300,7 @@ export default function CorporatePage() {
             ].map((s) => (
               <article key={s.id} className="group bg-white rounded-[32px] overflow-hidden border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 flex flex-col hover:-translate-y-1 transform">
                 <div className="h-[250px] overflow-hidden relative">
-                  <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
+                  <img src={s.image} alt={s.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000 ease-out" />
                 </div>
                 <div className="p-8 flex-1 flex flex-col items-center text-center">
                   <h3 className="font-serif-display text-[23px] text-[#1c1a1f] mb-3 font-semibold group-hover:text-fuchsia-800 transition-colors duration-300">{s.title}</h3>
@@ -430,7 +430,7 @@ export default function CorporatePage() {
             ].map((b) => (
               <article key={b.id} className="bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-[0_15px_40px_rgba(0,0,0,0.04)] transition-all duration-300 flex flex-col">
                 <Link href={`/blog/${b.id}`} className="h-56 overflow-hidden block">
-                  <img src={b.image} alt={b.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                  <img src={b.image} alt={b.title} className="w-full h-full object-contain hover:scale-105 transition-transform duration-700" />
                 </Link>
                 <div className="p-7 flex-1 flex flex-col justify-between">
                   <div>

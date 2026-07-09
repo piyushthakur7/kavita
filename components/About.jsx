@@ -18,7 +18,7 @@ const About = () => {
             <img 
               src={drImage} 
               alt="Dr. Kavita Kabira" 
-              className="w-full h-full object-cover" 
+              className="w-full h-full object-contain" 
             />
           </div>
         </div>

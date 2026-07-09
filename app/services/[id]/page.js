@@ -38,7 +38,7 @@ export default function ServiceDetailPage({ params }) {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-3 gap-12">
           <article className="lg:col-span-2">
             <div className="rounded-3xl overflow-hidden mb-10 h-[420px]">
-              <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+              <img src={service.image} alt={service.title} className="w-full h-full object-contain" />
             </div>
             <p className="text-[12px] uppercase tracking-[0.22em] text-fuchsia-700 font-semibold mb-3">{service.tag}</p>
             <h2 className="font-serif-display text-[40px] lg:text-[52px] leading-[1.1] text-[#1c1a1f] mb-6">{service.title}</h2>
@@ -71,7 +71,7 @@ export default function ServiceDetailPage({ params }) {
                   <li key={o.id}>
                     <Link href={`/services/${o.id}`} className="flex items-center gap-4 group">
                       <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
-                        <img src={o.image} alt={o.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <img src={o.image} alt={o.title} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
                       </div>
                       <div>
                         <p className="font-serif-display text-[18px] text-[#1c1a1f] group-hover:text-fuchsia-700 transition-colors">{o.title}</p>

@@ -199,7 +199,7 @@ export default function CreateBlogPage() {
               {coverImage ? (
                 <div className="rounded-xl overflow-hidden border border-white/5 bg-[#121015] p-2">
                   <div className="h-36 rounded-lg overflow-hidden relative">
-                    <img src={coverImage} alt="" className="w-full h-full object-cover" />
+                    <img src={coverImage} alt="" className="w-full h-full object-contain" />
                   </div>
                   <button
                     type="button"

@@ -57,7 +57,7 @@ const LinkPreview = ({ url, title, desc, fallbackIconName, customImage }) => {
         {loading ? (
           <div className="animate-pulse w-full h-full bg-gray-200"></div>
         ) : image ? (
-          <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src={image} alt={title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
         ) : (
           <FallbackIcon size={32} className="text-gray-300" />
         )}

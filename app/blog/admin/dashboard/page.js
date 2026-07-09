@@ -194,7 +194,7 @@ export default function AdminDashboardPage() {
                     <tr key={b.id} className="hover:bg-white/5 transition-colors">
                       <td className="py-5 px-8 shrink-0">
                         <div className="w-14 h-10 rounded-lg overflow-hidden border border-white/5 bg-stone-900 shadow-inner">
-                          <img src={b.coverImage} alt="" className="w-full h-full object-cover" />
+                          <img src={b.coverImage} alt="" className="w-full h-full object-contain" />
                         </div>
                       </td>
                       <td className="py-5 px-4 max-w-[300px]">

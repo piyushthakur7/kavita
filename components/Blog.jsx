@@ -47,7 +47,7 @@ const Blog = ({ limit, blogs }) => {
             return (
               <article key={p.id} className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-all duration-300">
                 <Link href={targetLink} className="block h-60 overflow-hidden relative">
-                  <img src={coverImage} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src={coverImage} alt={p.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                 </Link>
                 <div className="p-7">
                   <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-kavita-tan bg-kavita-tan/10 px-3 py-1 rounded-full mb-4">
