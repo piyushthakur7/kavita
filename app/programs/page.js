@@ -258,51 +258,66 @@ export default function ProgramsLandingPage() {
     <div className="bg-[#faf8f3] text-gray-800 font-sans-body antialiased min-h-screen">
       
       {/* ===== HERO SECTION ===== */}
-      <section className="relative pt-36 pb-24 lg:pt-48 lg:pb-36 overflow-hidden bg-gradient-to-br from-[#132c2c] via-[#091a1a] to-[#040b0b] text-[#f5f0e8]">
+      <section className="relative pt-36 pb-24 lg:pt-48 lg:pb-36 overflow-hidden bg-gradient-to-br from-[#fdfbf7] via-[#f9f3f0] to-[#f4e8e2] text-gray-800">
         {/* Glowing Decorative Radial Gradient */}
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-bl from-[#a8d5d5]/10 to-transparent rounded-full pointer-events-none filter blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-gradient-to-tr from-emerald-500/5 to-transparent rounded-full pointer-events-none filter blur-3xl" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-bl from-rose-200/40 to-transparent rounded-full pointer-events-none filter blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-gradient-to-tr from-sky-200/40 to-transparent rounded-full pointer-events-none filter blur-3xl" />
 
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10 text-center flex flex-col items-center">
-          {/* Tagline */}
-          <div className="uppercase tracking-[0.25em] text-[11px] lg:text-[12px] font-semibold text-[#a8d5d5] mb-6 animate-slide-up-fade">
-            A New Genre of Healing in India
+        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Text Content */}
+          <div className="flex flex-col items-start text-left z-10">
+            {/* Tagline */}
+            <div className="uppercase tracking-[0.25em] text-[11px] lg:text-[12px] font-semibold text-kavita-tan mb-6 animate-slide-up-fade">
+              A New Genre of Healing in India
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="font-serif-display text-[40px] sm:text-[56px] lg:text-[68px] leading-[1.1] font-normal tracking-tight text-gray-900 mb-6 animate-slide-up-fade animation-delay-200">
+              Healing that goes to the <span className="text-kavita-tan italic font-light relative after:absolute after:left-0 after:bottom-1 after:w-full after:h-[1px] after:bg-kavita-tan/30">root</span>,
+              <br />
+              not the symptom.
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-[16px] sm:text-[18px] lg:text-[20px] text-gray-600 leading-relaxed max-w-xl mb-10 animate-slide-up-fade animation-delay-400 font-light">
+              Your childhood taught you how to love. Your trauma lives in your nervous system. Your healing happens in the body — through presence, art, and understanding.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4 items-center animate-slide-up-fade animation-delay-600">
+              <button 
+                onClick={() => {
+                  const el = document.getElementById("programs-grid");
+                  if (el) {
+                    const offset = 100;
+                    const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
+                  }
+                }}
+                className="px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white shadow-md shadow-gray-900/10 font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 text-sm"
+              >
+                EXPLORE PROGRAMS
+              </button>
+              <button 
+                onClick={openModal}
+                className="px-8 py-4 bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 text-sm"
+              >
+                CLARITY CALL
+              </button>
+            </div>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="font-serif-display text-[40px] sm:text-[56px] lg:text-[68px] leading-[1.1] font-normal tracking-tight text-white mb-6 max-w-4xl animate-slide-up-fade animation-delay-200">
-            Healing that goes to the <span className="text-[#a8d5d5] italic font-light relative after:absolute after:left-0 after:bottom-1 after:w-full after:h-[1px] after:bg-[#a8d5d5]/30">root</span>,
-            <br />
-            not the symptom.
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-[16px] sm:text-[18px] lg:text-[20px] text-gray-300 leading-relaxed max-w-2xl mb-10 animate-slide-up-fade animation-delay-400 font-light">
-            Your childhood taught you how to love. Your trauma lives in your nervous system. Your healing happens in the body — through presence, art, and understanding.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center items-center animate-slide-up-fade animation-delay-600">
-            <button 
-              onClick={() => {
-                const el = document.getElementById("programs-grid");
-                if (el) {
-                  const offset = 100;
-                  const elementPosition = el.getBoundingClientRect().top + window.scrollY;
-                  window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
-                }
-              }}
-              className="px-8 py-4 bg-[#a8d5d5] hover:bg-[#8cc4c4] text-[#0f2121] font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-black/25 text-sm"
-            >
-              EXPLORE PROGRAMS
-            </button>
-            <button 
-              onClick={openModal}
-              className="px-8 py-4 bg-transparent border-2 border-[#a8d5d5] text-[#a8d5d5] hover:bg-[#a8d5d5] hover:text-[#0f2121] font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 text-sm"
-            >
-              CLARITY CALL
-            </button>
+          {/* Hero Image */}
+          <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-slide-up-fade animation-delay-400 border border-white/10 hidden lg:block group">
+            <img 
+              src="/api/local-image?file=programs_hero_1783613550176.png" 
+              alt="Programs Hero" 
+              className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-1000 ease-out"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-[#a8d5d5]/10 pointer-events-none mix-blend-overlay" />
           </div>
+
         </div>
       </section>
 
@@ -667,23 +682,23 @@ export default function ProgramsLandingPage() {
       </section>
 
       {/* ===== FINAL CTA SECTION ===== */}
-      <section className="bg-gradient-to-br from-[#132c2c] via-[#091a1a] to-[#040b0b] text-[#f5f0e8] py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#fdfbf7] via-[#f9f3f0] to-[#f4e8e2] text-gray-800 py-20 lg:py-28 relative overflow-hidden">
         {/* Backdrop gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(168,213,213,0.08),transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(200,180,170,0.15),transparent_60%)] pointer-events-none" />
         
         <div className="relative max-w-[850px] mx-auto px-6 text-center">
-          <h2 className="font-serif-display text-[36px] sm:text-[48px] lg:text-[56px] text-white font-normal mb-6 tracking-tight leading-tight">
+          <h2 className="font-serif-display text-[36px] sm:text-[48px] lg:text-[56px] text-gray-900 font-normal mb-6 tracking-tight leading-tight">
             Ready to transform?
           </h2>
           
-          <p className="text-gray-300 text-[15px] sm:text-[17px] leading-relaxed mb-10 max-w-xl mx-auto font-light">
+          <p className="text-gray-600 text-[15px] sm:text-[17px] leading-relaxed mb-10 max-w-xl mx-auto font-light">
             Each program is designed for different moments in your journey. Different paces. Different depths. There's no wrong choice — only the one that calls to you right now.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center items-center">
             <button 
               onClick={openModal}
-              className="px-8 py-4 bg-[#a8d5d5] hover:bg-[#8cc4c4] text-[#0f2121] font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-black/25 text-sm"
+              className="px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white shadow-md shadow-gray-900/10 font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 text-sm"
             >
               START CLARITY CALL
             </button>
@@ -691,20 +706,20 @@ export default function ProgramsLandingPage() {
               href="https://wa.me/918287045427?text=Hi%20Dr.%20Kavita,%20I'd%20like%20to%20schedule%20a%20clarity%20call%20regarding%20your%20signature%20programs."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-transparent border-2 border-[#a8d5d5] text-[#a8d5d5] hover:bg-[#a8d5d5] hover:text-[#0f2121] font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 text-sm inline-flex items-center gap-2"
+              className="px-8 py-4 bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-semibold tracking-wide rounded-sm transition-all duration-300 transform hover:-translate-y-0.5 text-sm inline-flex items-center gap-2"
             >
               DM ME ON WHATSAPP
             </a>
           </div>
 
-          <div className="mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-[13px] tracking-wider text-gray-400">
+          <div className="mt-10 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-center gap-6 text-[13px] tracking-wider text-gray-500">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Available for Pan-India &amp; International Sessions</span>
             </div>
-            <div className="hidden sm:block text-white/20">|</div>
+            <div className="hidden sm:block text-gray-300">|</div>
             <div>
-              WHATSAPP: <span className="text-white font-bold font-mono">8287045427</span>
+              WHATSAPP: <span className="text-gray-900 font-bold font-mono">8287045427</span>
             </div>
           </div>
         </div>
