@@ -11,6 +11,7 @@ import Blog from '@/components/Blog';
 import ContactCTA from '@/components/Contact';
 import LaunchBanner from '@/components/LaunchBanner';
 import AcademyTeaser from '@/components/AcademyTeaser';
+import WorkshopPopup from '@/components/WorkshopPopup';
 
 export default function Home() {
   // We need to pass onBookClick if the component requires it.
@@ -31,6 +32,7 @@ export default function Home() {
       <Blog limit={3} />
       <AcademyTeaser />
       <ContactCTA />
+      <WorkshopPopup />
     </>
   );
 }
