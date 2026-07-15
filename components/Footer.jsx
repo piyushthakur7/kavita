@@ -126,13 +126,18 @@ const Footer = () => {
 
       {/* Copyright footer strip */}
       <div className="border-t border-gray-200 bg-white py-6">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-between text-[13px] text-gray-500">
-          <p>
-            © {new Date().getFullYear()} Kavita Kabira Wellness Clinic. All rights reserved.
-          </p>
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-left">
+            <p>
+              © {new Date().getFullYear()} Kavita Kabira Wellness Clinic. All rights reserved.
+            </p>
+            <p>
+              Made by <a href="https://www.webtotalsolution.com" target="_blank" rel="noopener noreferrer" className="hover:text-kavita-tan transition font-medium">Web Total Solution</a> (www.webtotalsolution.com)
+            </p>
+          </div>
           <button
             onClick={scrollTop}
-            className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition"
+            className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition shrink-0"
             aria-label="Scroll to top"
           >
             <ArrowUp size={16} />

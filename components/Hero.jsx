@@ -45,11 +45,11 @@ const Hero = () => {
       </div>
 
       {/* Mobile image — shown below text on small screens */}
-      <div className="lg:hidden flex justify-center mt-auto w-full animate-slide-up-fade animation-delay-400 pointer-events-none px-4 pt-6 sm:pt-8 pb-4">
+      <div className="lg:hidden flex justify-center mt-auto w-full animate-slide-up-fade animation-delay-400 pointer-events-none pt-4 pb-0 overflow-visible">
         <img 
           src="/images/image copy.png" 
           alt="Dr. Kavita Kabira" 
-          className="w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain object-bottom drop-shadow-[0px_0px_40px_rgba(200,190,250,0.7)]" 
+          className="w-full h-auto object-contain object-bottom drop-shadow-[0px_0px_40px_rgba(200,190,250,0.7)] scale-[1.5] sm:scale-[1.6] origin-bottom translate-x-[-5%]" 
         />
       </div>
     </section>
