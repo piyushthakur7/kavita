@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@prisma/client": "^6.19.3",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-alert-dialog": "^1.1.11",
     "@radix-ui/react-aspect-ratio": "^1.1.4",
@@ -64,7 +65,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "copy-images": "node copy.js"
+    "copy-images": "node copy.js",
+    "seed:admin": "node scripts/seed-supabase-admin.js"
   },
   "browserslist": {
     "production": [
@@ -83,6 +85,7 @@
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "9.23.0",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^17.4.2",
     "eslint": "9.23.0",
     "eslint-config-next": "15.1.4",
     "eslint-plugin-import": "2.31.0",
@@ -91,6 +94,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "globals": "15.15.0",
     "postcss": "^8.4.49",
+    "prisma": "^6.19.3",
     "tailwindcss": "^3.4.17"
   }
 }

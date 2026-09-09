@@ -22,10 +22,7 @@ export async function GET(request) {
     const publishedOnly = searchParams.get('publishedOnly') === 'true';
 
     let query = supabase.from('Blog').select('*').order('createdAt', { ascending: false });
-    if (publishedOnly) {
-      query = query.eq('published', true);
-    }
-
+    if (publishedOnly) query = query.eq('published', true);
     const { data: blogs, error } = await query;
     if (error) throw error;
 
@@ -58,13 +55,19 @@ export async function POST(request) {
     let slug = createSlug(title);
     
     // Check if slug is unique, if not append random suffix
-    const { data: existing } = await supabase.from('Blog').select('slug').eq('slug', slug).single();
+    const { data: existing, error: existingError } = await supabase
+      .from('Blog')
+      .select('slug')
+      .eq('slug', slug)
+      .maybeSingle();
+    if (existingError) throw existingError;
     if (existing) {
       slug = `${slug}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
-    const { data: newBlog, error } = await supabase.from('Blog').insert([
-      {
+    const { data: newBlog, error } = await supabase
+      .from('Blog')
+      .insert([{
         title,
         slug,
         excerpt,
@@ -72,9 +75,9 @@ export async function POST(request) {
         coverImage,
         category: category || 'General',
         published: published !== undefined ? published : true,
-      }
-    ]).select().single();
-    
+      }])
+      .select()
+      .single();
     if (error) throw error;
 
     return NextResponse.json({ success: true, blog: newBlog });

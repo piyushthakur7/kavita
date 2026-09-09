@@ -10,15 +10,13 @@ export const dynamic = 'force-dynamic';
 export default async function BlogPage() {
   let blogs = [];
   try {
-    // Fetch published blogs from Supabase
     const { data, error } = await supabase
       .from('Blog')
       .select('*')
       .eq('published', true)
       .order('createdAt', { ascending: false });
-      
     if (error) throw error;
-    if (data) blogs = data;
+    blogs = data || [];
   } catch (error) {
     console.error("Failed to fetch blogs from database, falling back to mock data:", error.message);
   }

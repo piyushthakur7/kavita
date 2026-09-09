@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
-import { comparePasswords } from '@/lib/password';
+import { supabasePublic } from '@/lib/supabase';
 import { signJWT } from '@/lib/auth';
 
 export async function POST(request) {
@@ -11,16 +10,16 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
     }
 
-    // Locate the user in the database
-    const { data: user } = await supabase.from('User').select('*').eq('email', email).single();
-
-    if (!user) {
+    const { data, error } = await supabasePublic.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
+    if (error) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
+    const user = data.user;
 
-    // Cryptographically verify password hash
-    const isMatch = await comparePasswords(password, user.password);
-    if (!isMatch) {
+    if (!user) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
@@ -28,12 +27,12 @@ export async function POST(request) {
     const token = await signJWT({ 
       userId: user.id, 
       email: user.email, 
-      name: user.name 
+      name: user.user_metadata?.name || 'Administrator'
     });
 
     const response = NextResponse.json({ 
       success: true, 
-      user: { email: user.email, name: user.name } 
+      user: { email: user.email, name: user.user_metadata?.name || 'Administrator' } 
     });
     
     // Set secure HTTP-only cookie

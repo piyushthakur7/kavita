@@ -14,7 +14,7 @@ import { blogPosts } from '@/lib/mock';
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   
-  let { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).single();
+  const { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).maybeSingle();
 
   if (!post) {
     // Try mock posts
@@ -46,7 +46,7 @@ export default async function PublicBlogDetailPage({ params }) {
   const { slug } = await params;
 
   // Retrieve post from database
-  let { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).single();
+  const { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).maybeSingle();
 
   let isMock = false;
   let others = [];
@@ -82,10 +82,9 @@ export default async function PublicBlogDetailPage({ params }) {
       .neq('id', post.id)
       .order('createdAt', { ascending: false })
       .limit(3);
-    
     others = dbOthers || [];
 
-    // Increment view counter dynamically in background (using raw rpc if available, but for now just standard update)
+    // Increment view counter dynamically in background
     try {
       await supabase.from('Blog').update({ views: post.views + 1 }).eq('id', post.id);
     } catch (err) {

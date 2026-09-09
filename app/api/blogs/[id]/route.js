@@ -21,11 +21,11 @@ export async function GET(request, { params }) {
     const { id } = await params;
 
     // Search by ID first
-    let { data: blog, error } = await supabase.from('Blog').select('*').eq('id', id).single();
+    let { data: blog } = await supabase.from('Blog').select('*').eq('id', id).maybeSingle();
 
-    // Fallback to search by Slug if not found by ID or an error occurs (like uuid parse error)
+    // Fallback to search by Slug if not found by ID
     if (!blog) {
-      const { data: slugBlog } = await supabase.from('Blog').select('*').eq('slug', id).single();
+      const { data: slugBlog } = await supabase.from('Blog').select('*').eq('slug', id).maybeSingle();
       blog = slugBlog;
     }
 
@@ -54,7 +54,12 @@ export async function PUT(request, { params }) {
     const body = await request.json();
     const { title, excerpt, content, coverImage, category, published } = body;
 
-    const { data: existing } = await supabase.from('Blog').select('id, title').eq('id', id).single();
+    const { data: existing, error: existingError } = await supabase
+      .from('Blog')
+      .select('id, title')
+      .eq('id', id)
+      .maybeSingle();
+    if (existingError) throw existingError;
 
     if (!existing) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
@@ -66,7 +71,13 @@ export async function PUT(request, { params }) {
       // Re-generate slug if title changed and doesn't match
       if (title !== existing.title) {
         let newSlug = createSlug(title);
-        const { data: slugCollision } = await supabase.from('Blog').select('id').eq('slug', newSlug).neq('id', id).single();
+        const { data: slugCollision, error: slugError } = await supabase
+          .from('Blog')
+          .select('id')
+          .eq('slug', newSlug)
+          .neq('id', id)
+          .maybeSingle();
+        if (slugError) throw slugError;
         if (slugCollision) {
           newSlug = `${newSlug}-${Math.floor(1000 + Math.random() * 9000)}`;
         }
@@ -79,7 +90,12 @@ export async function PUT(request, { params }) {
     if (category !== undefined) updateData.category = category;
     if (published !== undefined) updateData.published = published;
 
-    const { data: updatedBlog, error } = await supabase.from('Blog').update(updateData).eq('id', id).select().single();
+    const { data: updatedBlog, error } = await supabase
+      .from('Blog')
+      .update(updateData)
+      .eq('id', id)
+      .select()
+      .single();
     if (error) throw error;
 
     return NextResponse.json({ success: true, blog: updatedBlog });
@@ -101,7 +117,12 @@ export async function DELETE(request, { params }) {
 
     const { id } = await params;
 
-    const { data: existing } = await supabase.from('Blog').select('id').eq('id', id).single();
+    const { data: existing, error: existingError } = await supabase
+      .from('Blog')
+      .select('id')
+      .eq('id', id)
+      .maybeSingle();
+    if (existingError) throw existingError;
 
     if (!existing) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });

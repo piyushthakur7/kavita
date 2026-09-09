@@ -1,5 +1,33 @@
 # Getting Started with Create React App
 
+## Supabase setup
+
+The app is configured with `NEXT_PUBLIC_SUPABASE_URL` and
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. Run
+[`supabase/schema.sql`](supabase/schema.sql) once in **Supabase Dashboard → SQL
+Editor** to create the `Blog` table and the public `blog-images` storage bucket.
+
+To use the protected blog-admin login, publishing, editing, deletion, and image
+upload APIs, add this server-only value to the deployment environment (never
+prefix it with `NEXT_PUBLIC_`):
+
+```env
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+The publishable key is enough for visitors to read published posts, but cannot
+safely grant the admin APIs access to drafts or storage writes. Admin accounts
+are created through Supabase Auth rather than a public database table.
+
+After adding the service-role key, create the initial administrator without
+putting credentials in source control:
+
+```powershell
+$env:ADMIN_EMAIL = 'your-admin-email@example.com'
+$env:ADMIN_PASSWORD = 'a-unique-password-with-at-least-12-characters'
+npm run seed:admin
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
