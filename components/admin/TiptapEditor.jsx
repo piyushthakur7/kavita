@@ -12,7 +12,7 @@ const TiptapEditor = ({ value, onChange }) => {
     },
     editorProps: {
       attributes: {
-        class: 'focus:outline-none min-h-[350px] p-5 text-white/80 prose prose-invert max-w-none text-[14.5px] leading-relaxed',
+        class: 'focus:outline-none min-h-[350px] p-5 text-slate-800 prose max-w-none text-[15px] leading-relaxed',
       },
     },
   });
@@ -26,8 +26,8 @@ const TiptapEditor = ({ value, onChange }) => {
 
   if (!editor) {
     return (
-      <div className="w-full h-[400px] rounded-2xl bg-[#121015] border border-white/5 animate-pulse flex items-center justify-center text-white/40 font-mono text-xs">
-        LOADING RICH EDITOR CONSOLE...
+      <div className="flex h-[400px] w-full items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-sm text-slate-500">
+        Loading editor…
       </div>
     );
   }
@@ -52,9 +52,8 @@ const TiptapEditor = ({ value, onChange }) => {
   ];
 
   return (
-    <div className="border border-white/5 rounded-2xl overflow-hidden bg-[#0a080c] shadow-2xl relative">
-      {/* Toolbar console */}
-      <div className="flex flex-wrap items-center gap-1.5 p-3 bg-[#121015] border-b border-white/5 sticky top-0 z-20">
+    <div className="overflow-hidden rounded-lg border border-slate-300 bg-white">
+      <div className="sticky top-0 z-20 flex flex-wrap items-center gap-1.5 border-b border-slate-200 bg-slate-50 p-3">
         {buttons.map((b, idx) => {
           if (b.type === 'separator') {
             return <div key={`sep-${idx}`} className="w-px h-5 bg-white/10 mx-1" />;
@@ -75,10 +74,10 @@ const TiptapEditor = ({ value, onChange }) => {
               type="button"
               onClick={b.action}
               disabled={b.disabled}
-              className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all select-none uppercase tracking-wider ${
+              className={`rounded px-3 py-1.5 text-xs font-medium transition ${
                 isActive
-                  ? 'bg-[#c5a880] text-black font-bold shadow-[0_0_8px_rgba(197,168,128,0.4)]'
-                  : 'text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-30'
+                  ? 'bg-fuchsia-700 text-white'
+                  : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-30'
               }`}
             >
               {b.label}
@@ -87,8 +86,7 @@ const TiptapEditor = ({ value, onChange }) => {
         })}
       </div>
 
-      {/* Editor Body */}
-      <div className="editor-container max-h-[500px] overflow-y-auto">
+      <div className="editor-container max-h-[500px] overflow-y-auto bg-white">
         <EditorContent editor={editor} />
       </div>
     </div>
