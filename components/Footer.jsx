@@ -132,7 +132,7 @@ const Footer = () => {
               © {new Date().getFullYear()} Kavita Kabira Wellness Clinic. All rights reserved.
             </p>
             <p>
-              Made by <a href="https://www.webtotalsolution.com" target="_blank" rel="noopener noreferrer" className="hover:text-kavita-tan transition font-medium">Web Total Solution</a> (www.webtotalsolution.com)
+              Developed by <a href="https://www.webtotalsolution.com/" target="_blank" rel="noopener" className="hover:text-kavita-tan transition font-medium">Web Total Solution</a>
             </p>
           </div>
           <button
