@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import { useToast } from '@/hooks/use-toast';
-import { contact } from '@/lib/mock';
+import { contact, socialLinks } from '@/lib/mock';
 
 export default function ContactPage() {
   const { toast } = useToast();
@@ -94,13 +94,13 @@ export default function ContactPage() {
             <div className="mt-8">
               <p className="text-[12px] uppercase tracking-[0.25em] font-semibold text-[#7e7a86] mb-3">Social Network</p>
               <div className="flex items-center gap-3">
-                <a href="#fb" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#1c1a1f] hover:text-white transition">
+                <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#1c1a1f] hover:text-white transition">
                   <Facebook size={15} />
                 </a>
-                <a href="#yt" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#1c1a1f] hover:text-white transition">
+                <a href={socialLinks.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#1c1a1f] hover:text-white transition">
                   <Youtube size={15} />
                 </a>
-                <a href="#ig" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#1c1a1f] hover:text-white transition">
+                <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#1c1a1f] hover:text-white transition">
                   <Instagram size={15} />
                 </a>
               </div>

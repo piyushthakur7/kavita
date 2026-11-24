@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { cache } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Calendar, Eye, ThumbsUp, ArrowLeft, User, MessageSquare } from 'lucide-react';
+import { Calendar, Eye, ThumbsUp, ArrowLeft, User } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
@@ -10,56 +10,45 @@ import ContactCTA from '@/components/Contact';
 import sanitizeHtml from 'sanitize-html';
 import { blogPosts } from '@/lib/mock';
 
-// Dynamic SEO Metadata Generator (Extremely Important!)
+const getPublicPost = cache(async (slug) => {
+  const { data } = await supabase.from('Blog').select('*')
+    .eq('slug', slug).eq('published', true).maybeSingle();
+  if (data) return { post: data, isMock: false };
+
+  const post = blogPosts.find((item) => item.id === slug);
+  return post ? { post, isMock: true } : null;
+});
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  
-  const { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).maybeSingle();
-
-  if (!post) {
-    // Try mock posts
-    post = blogPosts.find((p) => p.id === slug);
-    if (!post) {
-      return {
-        title: 'Post Not Found // Dr. Kavita Kabira',
-        description: 'Wellness articles and resources.',
-      };
-    }
+  const result = await getPublicPost(slug);
+  if (!result) {
     return {
-      title: `${post.title} // Dr. Kavita Kabira`,
-      description: post.excerpt,
+      title: 'Post Not Found // Dr. Kavita Kabira',
+      description: 'Wellness articles and resources.',
     };
   }
 
+  const { post, isMock } = result;
   return {
     title: `${post.title} // Dr. Kavita Kabira`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [{ url: post.coverImage }],
+      images: [{ url: isMock ? post.image : post.coverImage }],
     },
   };
 }
 
 export default async function PublicBlogDetailPage({ params }) {
   const { slug } = await params;
+  const result = await getPublicPost(slug);
+  if (!result) notFound();
 
-  // Retrieve post from database
-  const { data: post } = await supabase.from('Blog').select('*').eq('slug', slug).maybeSingle();
-
-  let isMock = false;
+  const { post, isMock } = result;
   let others = [];
-
-  if (!post) {
-    // Fallback to mock posts
-    post = blogPosts.find((p) => p.id === slug);
-    if (!post) {
-      notFound();
-    }
-    isMock = true;
-    
-    // Map mock posts for recommendations
+  if (isMock) {
     others = blogPosts
       .filter((p) => p.id !== slug)
       .map((o) => ({
@@ -71,9 +60,6 @@ export default async function PublicBlogDetailPage({ params }) {
         createdAt: o.date, // already formatted string
       }));
   } else {
-    if (!post.published) {
-      notFound();
-    }
     // Fetch other recent published posts for sidebar recommendations
     const { data: dbOthers } = await supabase
       .from('Blog')
@@ -126,6 +112,8 @@ export default async function PublicBlogDetailPage({ params }) {
   const views = isMock ? post.views : `${post.views + 1}`;
   const likes = post.likes;
   const author = isMock ? post.author : 'Dr. Kavita Kabira';
+  const shareUrl = encodeURIComponent(`https://www.kavitakabira.com/blog/${encodeURIComponent(slug)}`);
+  const shareTitle = encodeURIComponent(post.title);
 
   return (
     <>
@@ -168,9 +156,9 @@ export default async function PublicBlogDetailPage({ params }) {
               </Link>
               <div className="flex items-center gap-2 text-[12px] text-[#7e7a86]">
                 <span className="uppercase tracking-[0.22em] font-semibold">Share:</span>
-                <span className="px-3 py-1 rounded-full bg-[#f5f4ef] hover:bg-fuchsia-100 cursor-pointer transition">Twitter</span>
-                <span className="px-3 py-1 rounded-full bg-[#f5f4ef] hover:bg-fuchsia-100 cursor-pointer transition">Facebook</span>
-                <span className="px-3 py-1 rounded-full bg-[#f5f4ef] hover:bg-fuchsia-100 cursor-pointer transition">Email</span>
+                <a href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`} target="_blank" rel="noopener noreferrer" className="px-3 py-1 rounded-full bg-[#f5f4ef] hover:bg-fuchsia-100 transition">Twitter</a>
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer" className="px-3 py-1 rounded-full bg-[#f5f4ef] hover:bg-fuchsia-100 transition">Facebook</a>
+                <a href={`mailto:?subject=${shareTitle}&body=${shareUrl}`} className="px-3 py-1 rounded-full bg-[#f5f4ef] hover:bg-fuchsia-100 transition">Email</a>
               </div>
             </div>
           </article>
@@ -180,7 +168,7 @@ export default async function PublicBlogDetailPage({ params }) {
             <div className="bg-[#f5f4ef] rounded-3xl p-7 sticky top-28 border border-stone-200/40">
               <h3 className="font-serif-display text-[24px] text-[#1c1a1f] mb-5">Recent Articles</h3>
               {others.length === 0 ? (
-                <p className="text-xs font-mono text-stone-400">No other broadcast channels active.</p>
+                <p className="text-xs text-stone-500">No other articles available.</p>
               ) : (
                 <ul className="space-y-5">
                   {others.map((o) => (

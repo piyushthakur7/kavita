@@ -38,7 +38,7 @@ export default function ProgramsLandingPage() {
       buttonBg: "bg-sky-600 hover:bg-sky-700 focus:ring-sky-500",
       badgeBg: "bg-sky-100 text-sky-800",
       whatsappMsg: "Hi Dr. Kavita, I would like to know more about the Inner Child Healing Journey group program.",
-      image: "/api/local-image?file=inner_child_healing_1783612150293.png",
+      image: "/images/programs/inner-child-healing.jpg",
       details: {
         ideal: "Women ready to deeply heal their past and break repetitive patterns. Limited to 12 participants per cohort for personalized attention.",
         what: [
@@ -65,7 +65,7 @@ export default function ProgramsLandingPage() {
       buttonBg: "bg-rose-600 hover:bg-rose-700 focus:ring-rose-500",
       badgeBg: "bg-rose-100 text-rose-800",
       whatsappMsg: "Hi Dr. Kavita, I would like to know more about The Desire Reclaimed couples program.",
-      image: "/api/local-image?file=couples_therapy_1783612162319.png",
+      image: "/images/programs/desire-reclaimed.jpg",
       details: {
         ideal: "Couples together 5+ years who've become roommates. Relationships where one partner shut down. Couples ready to rebuild, not just fix.",
         what: [
@@ -92,7 +92,7 @@ export default function ProgramsLandingPage() {
       buttonBg: "bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500",
       badgeBg: "bg-emerald-100 text-emerald-800",
       whatsappMsg: "Hi Dr. Kavita, I would like to know more about The Healing Workplace corporate program.",
-      image: "/api/local-image?file=corporate_wellness_1783612173727.png",
+      image: "/images/programs/healing-workplace.jpg",
       details: {
         ideal: "Tech startups with burnout. Companies where mental health is talked about but not actually addressed. Leaders who are exhausted.",
         what: [
@@ -119,7 +119,7 @@ export default function ProgramsLandingPage() {
       buttonBg: "bg-violet-600 hover:bg-violet-700 focus:ring-violet-500",
       badgeBg: "bg-violet-100 text-violet-800",
       whatsappMsg: "Hi Dr. Kavita, I would like to know more about The Listening Self self-paced course.",
-      image: "/api/local-image?file=self_paced_course_1783612183234.png",
+      image: "/images/programs/listening-self.jpg",
       details: {
         ideal: "Anyone doing their own healing. Therapists deepening their practice. Women 20s-60s who know something is off but don't have language.",
         what: [
@@ -146,7 +146,7 @@ export default function ProgramsLandingPage() {
       buttonBg: "bg-amber-600 hover:bg-amber-700 focus:ring-amber-500",
       badgeBg: "bg-amber-100 text-amber-800",
       whatsappMsg: "Hi Dr. Kavita, I would like to know more about The Rewiring Retreat immersive program.",
-      image: "/api/local-image?file=rewiring_retreat_1783612195185.png",
+      image: "/images/programs/rewiring-retreat.jpg",
       details: {
         ideal: "People serious about change. Those ready to show up fully, vulnerably. Who understand transformation requires presence + community.",
         what: [
@@ -311,7 +311,7 @@ export default function ProgramsLandingPage() {
           {/* Hero Image */}
           <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-slide-up-fade animation-delay-400 border border-white/10 hidden lg:block group">
             <img 
-              src="/api/local-image?file=programs_hero_1783613550176.png" 
+              src="/images/programs/programs-hero.jpg"
               alt="Programs Hero" 
               className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-1000 ease-out"
             />

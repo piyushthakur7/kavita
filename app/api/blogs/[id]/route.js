@@ -20,12 +20,16 @@ export async function GET(request, { params }) {
   try {
     const { id } = await params;
 
-    // Search by ID first
-    let { data: blog } = await supabase.from('Blog').select('*').eq('id', id).maybeSingle();
+    const isAdmin = await verifyJWT(request.cookies.get('admin_session')?.value);
+    const findBlog = (column) => {
+      let query = supabase.from('Blog').select('*').eq(column, id);
+      if (!isAdmin) query = query.eq('published', true);
+      return query.maybeSingle();
+    };
 
-    // Fallback to search by Slug if not found by ID
+    let { data: blog } = await findBlog('id');
     if (!blog) {
-      const { data: slugBlog } = await supabase.from('Blog').select('*').eq('slug', id).maybeSingle();
+      const { data: slugBlog } = await findBlog('slug');
       blog = slugBlog;
     }
 

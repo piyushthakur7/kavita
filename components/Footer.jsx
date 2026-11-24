@@ -1,31 +1,12 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Facebook, Youtube, Instagram, ArrowUp } from 'lucide-react';
 import Logo from './Logo';
 import { ContactInfo } from './Contact';
-import { useToast } from '@/hooks/use-toast';
-import { navLinks } from '@/lib/mock';
+import { contact, navLinks, socialLinks } from '@/lib/mock';
 
 const Footer = () => {
-  const { toast } = useToast();
-  const [email, setEmail] = useState('');
-  const [agree, setAgree] = useState(false);
-
-  const subscribe = (e) => {
-    e.preventDefault();
-    if (!email || !agree) {
-      toast({ title: 'Please enter email & accept policy' });
-      return;
-    }
-    const subs = JSON.parse(localStorage.getItem('kk_subs') || '[]');
-    subs.push({ email, at: new Date().toISOString() });
-    localStorage.setItem('kk_subs', JSON.stringify(subs));
-    toast({ title: 'Subscribed!', description: 'Thanks for subscribing.' });
-    setEmail('');
-    setAgree(false);
-  };
-
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
@@ -45,34 +26,20 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Column 2: Newsletter */}
+        {/* Column 2: Clinic Updates */}
         <div className="lg:col-span-1 flex flex-col">
           <h4 className="font-serif-display text-lg font-semibold text-gray-900 mb-5">
-            Newsletter
+            Clinic Updates
           </h4>
-          <form onSubmit={subscribe} className="flex flex-col gap-3">
-            <div className="flex border border-gray-300 rounded overflow-hidden">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email Address"
-                className="flex-1 bg-white px-4 py-3 text-sm text-gray-800 focus:outline-none"
-              />
-              <button type="submit" className="px-5 py-3 bg-kavita-darkblue text-white font-medium text-sm hover:bg-gray-800 transition-colors uppercase">
-                Subscribe
-              </button>
-            </div>
-            <label className="flex items-center gap-2 text-[12px] text-gray-500 mt-2">
-              <input
-                type="checkbox"
-                checked={agree}
-                onChange={(e) => setAgree(e.target.checked)}
-                className="accent-kavita-tan"
-              />
-              <span>I agree to the Privacy Policy.</span>
-            </label>
-          </form>
+          <p className="mb-4 text-sm leading-relaxed text-gray-600">
+            Email the clinic to ask about upcoming workshops and programs.
+          </p>
+          <a
+            href={`mailto:${contact.email}?subject=Clinic%20updates`}
+            className="btn-primary self-start"
+          >
+            Request updates
+          </a>
         </div>
 
         {/* Column 3: Links */}
@@ -103,13 +70,13 @@ const Footer = () => {
               Connect With Us
             </h4>
             <div className="flex items-center gap-3">
-              <a href="#fb" className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition shadow-sm text-gray-600">
+              <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition shadow-sm text-gray-600">
                 <Facebook size={16} />
               </a>
-              <a href="#yt" className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition shadow-sm text-gray-600">
+              <a href={socialLinks.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition shadow-sm text-gray-600">
                 <Youtube size={16} />
               </a>
-              <a href="#ig" className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition shadow-sm text-gray-600">
+              <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-kavita-tan hover:text-white transition shadow-sm text-gray-600">
                 <Instagram size={16} />
               </a>
             </div>

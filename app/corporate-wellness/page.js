@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import { useToast } from '@/hooks/use-toast';
-import { contact } from '@/lib/mock';
+import { blogPosts, contact } from '@/lib/mock';
 
 // Trust counter component that counts to 9650 dynamically
 const TrustCounter = () => {
@@ -375,7 +375,7 @@ export default function CorporatePage() {
               rel="noopener noreferrer" 
               className="inline-block px-8 py-4 bg-[#050302] hover:bg-[#c5a48e] text-white text-[13px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 rounded-[2px] shadow-sm hover:shadow"
             >
-              VISIT OUR ONLINE PORTAL
+              ASK ABOUT ONLINE COUNSELING
             </a>
           </div>
         </div>
@@ -390,10 +390,10 @@ export default function CorporatePage() {
                 What&apos;s Going On In Our Blog?
               </p>
               <h2 className="font-serif-display text-[42px] sm:text-[54px] lg:text-[60px] leading-tight text-[#1c1a1f] font-medium">
-                Latest New &amp; Event
+                Latest Articles &amp; Resources
               </h2>
               <p className="mt-4 max-w-xl text-[15px] text-[#5b5670] leading-relaxed">
-                Contact our office for a free quote! It is always good to have a rough idea on your budget at this stage to enable us to quote as necessary
+                Explore articles on emotional wellbeing, therapy, and healthy boundaries.
               </p>
             </div>
             <Link href="/blog" className="inline-block px-6 py-3 border border-gray-300 hover:border-black text-[12px] uppercase tracking-[0.15em] font-semibold transition-all shrink-0">
@@ -402,32 +402,7 @@ export default function CorporatePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {[
-              {
-                id: 'happiness',
-                category: 'Therapy',
-                title: 'How to catch the happiness',
-                date: 'January 13, 2023',
-                image: '/images/DSC_0224.jpeg',
-                excerpt: "Today, it feels like everything has changed—it’s either been closed, postponed, or canceled. Some states have officially shut down. You’re working from home, while watching your kids..."
-              },
-              {
-                id: 'quarantine',
-                category: 'Articles',
-                title: '10 Quarantine Activities That Don’t Involve Watching the News',
-                date: 'January 16, 2023',
-                image: '/images/DSC_0234.jpeg',
-                excerpt: "Today, it feels like everything has changed—it’s either been closed, postponed, or canceled. Some states have officially shut down. You’re working from home, while watching your kids..."
-              },
-              {
-                id: 'please-thank-you',
-                category: 'Articles',
-                title: 'Is It Important to Say “Please” and “Thank You” to Your Partner?',
-                date: 'January 16, 2023',
-                image: '/images/DSC_0237.jpeg',
-                excerpt: "Politeness in long-term relationships may seem unnecessary, but research suggests these small phrases create big emotional safety."
-              }
-            ].map((b) => (
+            {blogPosts.slice(0, 3).map((b) => (
               <article key={b.id} className="bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-[0_15px_40px_rgba(0,0,0,0.04)] transition-all duration-300 flex flex-col">
                 <Link href={`/blog/${b.id}`} className="h-56 overflow-hidden block">
                   <img src={b.image} alt={b.title} className="w-full h-full object-contain hover:scale-105 transition-transform duration-700" />

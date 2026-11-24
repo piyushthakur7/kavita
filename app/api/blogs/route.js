@@ -15,14 +15,15 @@ function createSlug(title) {
     .replace(/-+$/, '');            // Trim - from end
 }
 
-// GET all blogs
+// Guests can only read published posts. The admin dashboard also needs drafts.
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const publishedOnly = searchParams.get('publishedOnly') === 'true';
+    const isAdmin = await verifyJWT(request.cookies.get('admin_session')?.value);
 
     let query = supabase.from('Blog').select('*').order('createdAt', { ascending: false });
-    if (publishedOnly) query = query.eq('published', true);
+    if (publishedOnly || !isAdmin) query = query.eq('published', true);
     const { data: blogs, error } = await query;
     if (error) throw error;
 
