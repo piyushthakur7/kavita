@@ -6,8 +6,8 @@ import { ModalProvider } from '@/context/ModalContext';
 import './globals.css';
 
 export const metadata = {
-  title: 'Kavita Kabira Wellness Clinic | Best Psychologist in Gurgaon',
-  description: 'Dr. Kavita Kabira Wellness Clinic offers professional psychotherapy, counseling, and wellness coaching in Gurgaon, Delhi, and online.',
+  title: 'Counseling Therapist and Psychologist | Kavita Kabira',
+  description: 'Dr. Kavita Kabira is a counseling therapist and psychologist offering therapy, counseling, and wellness coaching in Gurgaon, Delhi, and online.',
 };
 
 export default function RootLayout({ children }) {

@@ -43,7 +43,7 @@ const About = () => {
           </p>
 
           <p className="text-[15px] leading-[1.8] text-gray-600 mb-6">
-            At Kavita Kabira Wellness Clinic, I work with what most therapy skips &mdash; the inner child, the nervous system, the story your body is still holding. My approach is not borrowed wholesale from the West. It is informed by global clinical frameworks and rooted in the Indian emotional landscape &mdash; the weight of family expectations, the silence around desire, the loneliness inside a full house.
+            I am Dr. Kavita Kabira, a counseling therapist and psychologist. At my wellness clinic, I work with what most therapy skips &mdash; the inner child, the nervous system, the story your body is still holding. My approach is not borrowed wholesale from the West. It is informed by approaches from counseling and psychology and rooted in the Indian emotional landscape &mdash; the weight of family expectations, the silence around desire, the loneliness inside a full house.
           </p>
 
           <p className="text-[14px] text-gray-600 italic mb-8 font-medium">

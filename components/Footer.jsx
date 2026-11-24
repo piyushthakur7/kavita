@@ -40,7 +40,7 @@ const Footer = () => {
               Healing that respects your story.
             </p>
             <p className="mt-2 text-[14px] text-gray-600 leading-relaxed">
-              Clinical psychology, trauma recovery, and inner child healing in Gurgaon, Delhi, and online.
+              Counseling Therapist and Psychologist offering support for trauma recovery and inner child healing in Gurgaon, Delhi, and online.
             </p>
           </div>
         </div>

@@ -341,7 +341,7 @@ export default function CorporatePage() {
 
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
               {[
-                { title: 'Evidence-Based & Trauma-Informed', desc: 'No toxic positivity. We use clinical frameworks that respect the complexity of human psychology.' },
+                { title: 'Evidence-Based & Trauma-Informed', desc: 'No toxic positivity. We draw on counseling and psychology to support people at work.' },
                 { title: 'Culturally Grounded', desc: 'We understand the specific pressures of the Indian corporate landscape—from hierarchy dynamics to family obligations.' },
                 { title: 'Somatic Focus', desc: 'We don’t just talk about stress. We teach the body how to process it using nervous-system regulation techniques.' },
                 { title: 'Sustainable Change', desc: 'We provide tools that outlast the workshop, empowering employees to manage their own emotional baseline long-term.' }

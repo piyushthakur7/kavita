@@ -27,7 +27,7 @@ export default function MediaPage() {
               Research & Compilation
             </h2>
             <p className="text-gray-600 text-[16px] max-w-2xl mx-auto">
-              A curated collection of video appearances, authored books, clinical profiles, and social media hubs.
+              A curated collection of video appearances, authored books, practice profiles, and social media hubs.
             </p>
           </div>
 
@@ -118,16 +118,16 @@ export default function MediaPage() {
               </div>
             </div>
 
-            {/* Clinical & Appointments */}
+            {/* Practice & Appointments */}
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-kavita-tan/10 rounded-full flex items-center justify-center text-kavita-tan">
                   <Stethoscope size={24} />
                 </div>
-                <h3 className="font-serif-display text-[24px] text-gray-900">Clinical & Appointments</h3>
+                <h3 className="font-serif-display text-[24px] text-gray-900">Practice & Appointments</h3>
               </div>
               <div className="flex flex-col gap-4">
-                {mediaPresence.clinical.map((item, i) => (
+                {mediaPresence.appointments.map((item, i) => (
                   <LinkPreview key={i} url={item.link} title={item.title} fallbackIconName="Stethoscope" />
                 ))}
               </div>

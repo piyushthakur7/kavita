@@ -31,7 +31,7 @@ export default function AboutPage() {
 
           <div className="lg:col-span-7">
             <p className="uppercase tracking-[0.25em] text-[11px] font-semibold text-kavita-tan mb-5">
-              Renowned Psychologist, Mindset Coach &amp; Expert in Emotional Healing
+              Counseling Therapist and Psychologist
             </p>
 
             <h2 className="font-serif-display text-[28px] lg:text-[36px] leading-[1.3] text-gray-900 mb-8 whitespace-pre-wrap">
@@ -41,7 +41,7 @@ export default function AboutPage() {
             {/* Credentials Strip */}
             <div className="bg-[#f5f4ef] rounded-lg p-5 mb-8 border border-gray-200 shadow-sm">
               <p className="text-[14px] lg:text-[15px] font-medium text-gray-800 text-center leading-relaxed">
-                NCAHP Registered | Ph.D. Social Psychology | M.A. Clinical Psychology | Trained Art & Psychodrama Therapist
+                Ph.D. Social Psychology | M.A. Psychology | Trained Art & Psychodrama Therapist
               </p>
             </div>
 
@@ -87,7 +87,7 @@ export default function AboutPage() {
             <div className="animate-[fadeIn_.3s_ease]">
               {/* Intro paragraph */}
               <p className="text-[15px] leading-[1.85] text-gray-600 mb-10 max-w-4xl">
-                Dr. Kavita Kabira is a leading expert in mental health therapy, emotional healing, and trauma recovery. Blending modern psychology with holistic practices, she focuses on inner child trauma, corporate wellness, and mindfulness for emotional resilience.
+                Dr. Kavita Kabira is a counseling therapist and psychologist whose work focuses on mental health, emotional healing, and trauma recovery. Blending modern psychology with holistic practices, she focuses on inner child trauma, corporate wellness, and mindfulness for emotional resilience.
               </p>
 
               {/* Timeline */}
